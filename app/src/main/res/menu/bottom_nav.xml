@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_state_home"
+        android:title="@string/home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/songFragment"
+        android:icon="@drawable/ic_state_song"
+        android:title="@string/song"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/settingFragment"
+        android:icon="@drawable/ic_state_setting"
+        android:title="@string/setting"
+        app:showAsAction="ifRoom" />
+</menu>

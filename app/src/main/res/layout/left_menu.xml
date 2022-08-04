@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F210121D"
+    android:orientation="vertical"
+    android:weightSum="7.5">
+
+    <ImageView
+        android:id="@+id/imgLogoMenu"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_logo" />
+
+    <TextView
+        android:id="@+id/txtMuzicMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/muzic"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="120" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="120" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="120" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Songs" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Albums" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Artists" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_themes" />
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/themes" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_ringtone_cutter" />
+
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/ringtone_cutter" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_sleeptimer" />
+
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/sleep_timer" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_equliser" />
+
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/equalizer" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_drivemode" />
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/drive_mode" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_hiddenfolder" />
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/hidden_folders" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_scanmedia" />
+
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/scan_media" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#10121D" />
+</LinearLayout>
