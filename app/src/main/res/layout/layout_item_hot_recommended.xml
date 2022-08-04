@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="songModel"
+            type="com.example.mockproject.model.SongModel" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        xmlns:apps="http://schemas.android.com/tools"
+        android:background="@color/background_color"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgSongHR"
+            android:layout_width="260dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            tools:shapeAppearanceOverlay="@style/Rectangle"
+            android:background="@drawable/border_image_rectangle"
+            tools:srcCompat="@drawable/image_song_sample" />
+
+        <TextView
+            android:id="@+id/txtNameSongHR"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            apps:text="Sound of Sky"
+            android:text="@{songModel.nameSong}"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/txtSingerSongHR"
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{songModel.singerSong}"
+            apps:text="Dilon Bruce"
+            android:textSize="13sp"
+            android:textColor="@color/sub_color"
+            />
+    </LinearLayout>
+</layout>

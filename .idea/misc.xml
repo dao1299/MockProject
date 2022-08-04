@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.172" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/bg_gradient.xml" value="0.227" />
+        <entry key="..\:/Android/MockProject/app/src/main/res/drawable/border_image_rectangle.xml" value="0.196" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/break_item_menu.xml" value="0.172" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/ic_bugermenu.xml" value="0.172" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/ic_home.xml" value="0.172" />
@@ -29,6 +30,9 @@
         <entry key="..\:/Android/MockProject/app/src/main/res/layout/fragment_setting.xml" value="0.29483695652173914" />
         <entry key="..\:/Android/MockProject/app/src/main/res/layout/fragment_slideshow.xml" value="0.29483695652173914" />
         <entry key="..\:/Android/MockProject/app/src/main/res/layout/fragment_song.xml" value="0.29483695652173914" />
+        <entry key="..\:/Android/MockProject/app/src/main/res/layout/layout_item_hot_recommended.xml" value="0.33" />
+        <entry key="..\:/Android/MockProject/app/src/main/res/layout/layout_item_list_song.xml" value="0.33" />
+        <entry key="..\:/Android/MockProject/app/src/main/res/layout/layout_item_playlist.xml" value="0.33" />
         <entry key="..\:/Android/MockProject/app/src/main/res/layout/left_menu.xml" value="0.33" />
         <entry key="..\:/Android/MockProject/app/src/main/res/layout/main_activity.xml" value="0.2601010101010101" />
         <entry key="..\:/Android/MockProject/app/src/main/res/layout/nav_header_main.xml" value="0.29483695652173914" />

@@ -90,6 +90,7 @@
             android:layout_height="24dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_themes" />
+
         <TextView
             style="@style/style_text_item_menu"
             android:text="@string/themes" />
@@ -144,23 +145,27 @@
             android:layout_height="24dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_drivemode" />
+
         <TextView
             style="@style/style_text_item_menu"
             android:text="@string/drive_mode" />
     </LinearLayout>
 
     <LinearLayout style="@style/style_item_menu">
+
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_hiddenfolder" />
+
         <TextView
             style="@style/style_text_item_menu"
             android:text="@string/hidden_folders" />
     </LinearLayout>
 
     <LinearLayout style="@style/style_item_menu">
+
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -175,6 +180,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:background="#10121D" />
 </LinearLayout>
