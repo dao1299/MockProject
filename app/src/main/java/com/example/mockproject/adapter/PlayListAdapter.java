@@ -54,7 +54,7 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.ViewHo
         }
 
         public void bind(Object obj){
-            binding.setVariable(BR.songModel,obj);
+            binding.setVariable(BR.playlistModel,obj);
             binding.executePendingBindings();
         }
 

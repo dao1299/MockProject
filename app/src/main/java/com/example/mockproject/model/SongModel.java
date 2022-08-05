@@ -75,7 +75,7 @@ public class SongModel {
         return idSong == songModel.idSong && Objects.equals(nameSong, songModel.nameSong) && Objects.equals(uriSong, songModel.uriSong) && Objects.equals(singerSong, songModel.singerSong);
     }
 
-    public static DiffUtil.ItemCallback<SongModel> studentModelItemCallback = new DiffUtil.ItemCallback<SongModel>() {
+    public static DiffUtil.ItemCallback<SongModel> songModelItemCallback = new DiffUtil.ItemCallback<SongModel>() {
         @Override
         public boolean areItemsTheSame(@NonNull SongModel oldItem, @NonNull SongModel newItem) {
             return oldItem.idSong == newItem.idSong ;
