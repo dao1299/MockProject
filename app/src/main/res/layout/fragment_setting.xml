@@ -1,14 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#181B2C"
+    android:weightSum="10"
     tools:context=".view.fragment.SettingFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/setting" />
+    <LinearLayout style="@style/style_item_menu">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic__display" />
+
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/display" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_audio" />
+
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/audio" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_headset" />
+
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/headset" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_lockscreen" />
+
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/lockscreen" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_advanced" />
+
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="Advanced" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/style_item_menu">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_setting_checked" />
+
+        <TextView
+            style="@style/style_text_item_menu"
+            android:text="@string/other" />
+    </LinearLayout>
+
+
+
+</LinearLayout>
