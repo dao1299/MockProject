@@ -1,6 +1,5 @@
 package com.example.mockproject.adapter;
 
-import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,10 +46,10 @@ public class HomeElementAdapter extends RecyclerView.Adapter<HomeElementAdapter.
         holder.bind(homeElementModel);
         holder.binding.rcvElementFragmentHome.setAdapter((RecyclerView.Adapter) homeElementModel.getAdapter());
         if (context.getString(R.string.HotRCM).equals(homeElementModel.getTitle())
-        || context.getString(R.string.Playlist).equals(homeElementModel.getTitle())){
+        || context.getString(R.string.Playlists).equals(homeElementModel.getTitle())){
             holder.binding.rcvElementFragmentHome.setLayoutManager(new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false));
         }else if (context.getString(R.string.RecentlyPlayed).equals(homeElementModel.getTitle())){
-            Log.i(TAG, "onBindViewHolder: 1111111111111111111111111111111");
+
             holder.binding.rcvElementFragmentHome.setLayoutManager(new LinearLayoutManager(context,RecyclerView.VERTICAL,false));
         }
     }

@@ -1,14 +1,9 @@
 package com.example.mockproject.viewmodel;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.res.Resources;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.mockproject.R;
 import com.example.mockproject.adapter.HotRecommendAdapter;
@@ -42,7 +37,7 @@ public class HomeViewModel extends AndroidViewModel {
                 false,
                 initHotAdapter()));
 
-        homeElementModels.add(new HomeElementModel(application.getString(R.string.Playlist),
+        homeElementModels.add(new HomeElementModel(application.getString(R.string.Playlists),
                 true,
                 initPlaylistAdapter()));
 
