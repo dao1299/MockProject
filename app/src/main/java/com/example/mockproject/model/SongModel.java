@@ -13,11 +13,23 @@ public class SongModel {
     private String uriSong;
     private String singerSong;
 
+    private String duration;
+
+
+
     public SongModel(long idSong, String nameSong, String uriSong, String singerSong) {
         this.idSong = idSong;
         this.nameSong = nameSong;
         this.uriSong = uriSong;
         this.singerSong = singerSong;
+    }
+
+    public SongModel(long idSong, String nameSong, String uriSong, String singerSong, String duration) {
+        this.idSong = idSong;
+        this.nameSong = nameSong;
+        this.uriSong = uriSong;
+        this.singerSong = singerSong;
+        this.duration = duration;
     }
 
     public SongModel() {
@@ -86,4 +98,12 @@ public class SongModel {
             return oldItem.equals(newItem);
         }
     };
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
 }

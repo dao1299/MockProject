@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".view.fragment.SongFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutSongs"
+        style="MyCustomTextAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="scrollable"
-        style="MyCustomTextAppearance"
-        app:tabPaddingStart="20dp"
-        app:tabPaddingEnd="20dp"
-        app:tabGravity="center"
-        app:tabTextColor="@color/white"
-
-        app:tabIndicatorFullWidth="false"
-        app:tabTextAppearance="@style/MyCustomTextAppearance"
         app:tabBackground="@color/background_color"
+        app:tabGravity="center"
+        app:tabIndicatorFullWidth="false"
+        app:tabMode="scrollable"
+        app:tabPaddingEnd="20dp"
+        app:tabPaddingStart="20dp"
         app:tabSelectedTextColor="#D9519D"
-
+        app:tabTextAppearance="@style/MyCustomTextAppearance"
+        app:tabTextColor="@color/white"
         />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerSongs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

@@ -49,7 +49,6 @@ public class HomeElementAdapter extends RecyclerView.Adapter<HomeElementAdapter.
         || context.getString(R.string.Playlists).equals(homeElementModel.getTitle())){
             holder.binding.rcvElementFragmentHome.setLayoutManager(new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false));
         }else if (context.getString(R.string.RecentlyPlayed).equals(homeElementModel.getTitle())){
-
             holder.binding.rcvElementFragmentHome.setLayoutManager(new LinearLayoutManager(context,RecyclerView.VERTICAL,false));
         }
     }
