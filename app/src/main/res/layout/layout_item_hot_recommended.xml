@@ -37,7 +37,7 @@
             android:layout_marginTop="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{songModel.singerSong}"
+            android:text="@{songModel.artistSong}"
             apps:text="Dilon Bruce"
             android:textSize="13sp"
             android:textColor="@color/sub_color"

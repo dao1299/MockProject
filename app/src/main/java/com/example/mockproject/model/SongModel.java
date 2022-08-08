@@ -1,74 +1,40 @@
 package com.example.mockproject.model;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.DiffUtil;
-
-import java.util.Objects;
-
 public class SongModel {
-
     private long idSong;
     private String nameSong;
+    private String artistSong;
+    private String artistId;
+    private String albumSong;
+    private String albumId;
+    private String durationSong;
     private String uriSong;
-    private String singerSong;
-
-    private String duration;
-
+    private String genreSong;
+    private String genreId;
 
 
-    public SongModel(long idSong, String nameSong, String uriSong, String singerSong) {
+    public SongModel(long idSong, String nameSong, String artistSong, String artistId, String albumSong, String albumId, String durationSong, String uriSong, String genreSong, String genreId) {
         this.idSong = idSong;
         this.nameSong = nameSong;
+        this.artistSong = artistSong;
+        this.artistId = artistId;
+        this.albumSong = albumSong;
+        this.albumId = albumId;
+        this.durationSong = durationSong;
         this.uriSong = uriSong;
-        this.singerSong = singerSong;
-    }
+        this.genreSong = genreSong;
+        this.genreId = genreId;
 
-    public SongModel(long idSong, String nameSong, String uriSong, String singerSong, String duration) {
-        this.idSong = idSong;
-        this.nameSong = nameSong;
-        this.uriSong = uriSong;
-        this.singerSong = singerSong;
-        this.duration = duration;
     }
 
     public SongModel() {
     }
 
-    public String getNameSong() {
-        return nameSong;
-    }
-
-    public void setNameSong(String nameSong) {
+    public SongModel(long idSong, String nameSong, String artistSong, String uriSong) {
+        this.idSong = idSong;
         this.nameSong = nameSong;
-    }
-
-    public String getUriSong() {
-        return uriSong;
-    }
-
-    public void setUriSong(String uriSong) {
+        this.artistSong = artistSong;
         this.uriSong = uriSong;
-    }
-
-
-
-    public String getSingerSong() {
-        return singerSong;
-    }
-
-    public void setSingerSong(String singerSong) {
-        this.singerSong = singerSong;
-    }
-
-    @Override
-    public String toString() {
-        return "SongModel{" +
-                "idSong=" + idSong +
-                ", nameSong='" + nameSong + '\'' +
-                ", uriSong='" + uriSong + '\'' +
-                ", singerSong='" + singerSong + '\'' +
-                '}';
     }
 
     public long getIdSong() {
@@ -79,31 +45,91 @@ public class SongModel {
         this.idSong = idSong;
     }
 
+    public String getNameSong() {
+        return nameSong;
+    }
+
+    public void setNameSong(String nameSong) {
+        this.nameSong = nameSong;
+    }
+
+    public String getArtistSong() {
+        return artistSong;
+    }
+
+    public void setArtistSong(String artistSong) {
+        this.artistSong = artistSong;
+    }
+
+    public String getArtistId() {
+        return artistId;
+    }
+
+    public void setArtistId(String artistId) {
+        this.artistId = artistId;
+    }
+
+    public String getAlbumSong() {
+        return albumSong;
+    }
+
+    public void setAlbumSong(String albumSong) {
+        this.albumSong = albumSong;
+    }
+
+    public String getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(String albumId) {
+        this.albumId = albumId;
+    }
+
+    public String getDurationSong() {
+        return durationSong;
+    }
+
+    public void setDurationSong(String durationSong) {
+        this.durationSong = durationSong;
+    }
+
+    public String getUriSong() {
+        return uriSong;
+    }
+
+    public void setUriSong(String uriSong) {
+        this.uriSong = uriSong;
+    }
+
+    public String getGenreSong() {
+        return genreSong;
+    }
+
+    public void setGenreSong(String genreSong) {
+        this.genreSong = genreSong;
+    }
+
+    public String getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(String genreId) {
+        this.genreId = genreId;
+    }
+
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SongModel songModel = (SongModel) o;
-        return idSong == songModel.idSong && Objects.equals(nameSong, songModel.nameSong) && Objects.equals(uriSong, songModel.uriSong) && Objects.equals(singerSong, songModel.singerSong);
-    }
-
-    public static DiffUtil.ItemCallback<SongModel> songModelItemCallback = new DiffUtil.ItemCallback<SongModel>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull SongModel oldItem, @NonNull SongModel newItem) {
-            return oldItem.idSong == newItem.idSong ;
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull SongModel oldItem, @NonNull SongModel newItem) {
-            return oldItem.equals(newItem);
-        }
-    };
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
+    public String toString() {
+        return "SongModel{" +
+                "idSong=" + idSong +
+                ", nameSong='" + nameSong + '\'' +
+                ", artistSong='" + artistSong + '\'' +
+                ", artistId='" + artistId + '\'' +
+                ", albumSong='" + albumSong + '\'' +
+                ", albumId='" + albumId + '\'' +
+                ", durationSong='" + durationSong + '\'' +
+                ", uriSong='" + uriSong + '\'' +
+                ", genreSong='" + genreSong + '\'' +
+                ", genreId='" + genreId + '\'' +
+                '}';
     }
 }

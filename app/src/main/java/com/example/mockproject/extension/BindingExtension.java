@@ -20,11 +20,15 @@ public class BindingExtension {
         Bitmap art;
         BitmapFactory.Options bfo=new BitmapFactory.Options();
         if (uri.charAt(0)=='/'){
-            mmr.setDataSource(uri);
-            rawArt = mmr.getEmbeddedPicture();
-            if (null != rawArt){
-                art = BitmapFactory.decodeByteArray(rawArt, 0, rawArt.length, bfo);
-                imageSong.setImageBitmap(art);
+            try{
+                mmr.setDataSource(uri);
+                rawArt = mmr.getEmbeddedPicture();
+                if (null != rawArt){
+                    art = BitmapFactory.decodeByteArray(rawArt, 0, rawArt.length, bfo);
+                    imageSong.setImageBitmap(art);
+                }
+            }catch (Exception exception){
+                exception.printStackTrace();
             }
         }else{
             imageSong.setImageResource(R.drawable.ic_song);

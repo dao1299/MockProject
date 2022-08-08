@@ -50,7 +50,6 @@ public class HomeElementModel {
                 '}';
     }
 
-
     public Object getAdapter() {
         return adapter;
     }
