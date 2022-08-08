@@ -1,16 +1,14 @@
-package com.example.mockproject.adapter;
+package com.example.mockproject.view.main_activity.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.mockproject.AlbumsFragment;
-import com.example.mockproject.AllSongFragment;
-import com.example.mockproject.ArtistsFragment;
-import com.example.mockproject.GenresFragment;
-import com.example.mockproject.PlayListFragment;
-import com.example.mockproject.view.fragment.SongFragment;
+import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.AlbumsFragment;
+import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.AllSongFragment;
+import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.ArtistsFragment;
+import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.GenresFragment;
+import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.PlayListFragment;
 
 public class ViewPagerSongsFragmentAdapter extends FragmentStateAdapter {
 

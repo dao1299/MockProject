@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.example.mockproject.R;
-import com.example.mockproject.adapter.HotRecommendAdapter;
-import com.example.mockproject.adapter.ListSongAdapter;
-import com.example.mockproject.adapter.PlayListAdapter;
+import com.example.mockproject.view.main_activity.adapter.HotRecommendAdapter;
+import com.example.mockproject.view.main_activity.adapter.ListSongAdapter;
+import com.example.mockproject.view.main_activity.adapter.PlayListAdapter;
 import com.example.mockproject.model.HomeElementModel;
 import com.example.mockproject.model.PlaylistModel;
 import com.example.mockproject.model.SongModel;
@@ -21,7 +21,6 @@ public class HomeViewModel extends AndroidViewModel {
     List<SongModel> listSongHotRcm;
     List<SongModel> listRecentlyPlayer;
     List<PlaylistModel> listPlaylist;
-
     List<HomeElementModel> homeElementModels;
     Application application;
 
@@ -45,17 +44,6 @@ public class HomeViewModel extends AndroidViewModel {
         return homeElementModels;
     }
 
-    private void initData(){
-
-
-
-
-
-        listRecentlyPlayer.add(new SongModel(1,"Sound of Sky","Dilon Bruce","Dilon Bruce"));
-        listRecentlyPlayer.add(new SongModel(2,"Girl on Fire","Dilon Bruce","Alecia Keys"));
-        listRecentlyPlayer.add(new SongModel(3,"Sound of Sky","Dilon Bruce","Dilon Bruce"));
-        listRecentlyPlayer.add(new SongModel(4,"Girl on Fire","Dilon Bruce","Alecia Keys"));
-    }
 
     public HotRecommendAdapter initHotAdapter(){
         listSongHotRcm = new ArrayList<>();

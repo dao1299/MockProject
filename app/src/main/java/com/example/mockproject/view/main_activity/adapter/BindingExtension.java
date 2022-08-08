@@ -1,4 +1,4 @@
-package com.example.mockproject.extension;
+package com.example.mockproject.view.main_activity.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

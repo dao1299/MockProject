@@ -77,7 +77,6 @@ public class SongsUtils extends Activity{
                     cursor.getString(9)
             );
             Log.i(TAG, "getMusic: "+SongModel);
-
             songModelList.add(SongModel);
 
         }

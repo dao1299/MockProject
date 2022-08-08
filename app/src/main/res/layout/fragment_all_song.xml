@@ -13,5 +13,5 @@
         tools:listitem="@layout/layout_item_list_song"
         android:layout_height="match_parent"
         android:background="@color/background_color"
-        tools:context=".AllSongFragment" />
+        tools:context=".view.main_activity.fragmentelement.songs.subfragment.AllSongFragment" />
 </layout>

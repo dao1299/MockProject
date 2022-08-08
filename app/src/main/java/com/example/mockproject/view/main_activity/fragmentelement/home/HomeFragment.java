@@ -1,4 +1,4 @@
-package com.example.mockproject.view.fragment;
+package com.example.mockproject.view.main_activity.fragmentelement.home;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,12 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mockproject.adapter.HomeElementAdapter;
-import com.example.mockproject.adapter.ListSongAdapter;
 import com.example.mockproject.databinding.FragmentHomeBinding;
+import com.example.mockproject.view.main_activity.adapter.HomeElementAdapter;
+import com.example.mockproject.view.main_activity.adapter.ListSongAdapter;
 import com.example.mockproject.model.SongModel;
 import com.example.mockproject.viewmodel.HomeViewModel;
-import com.example.mockproject.R;
 
 public class HomeFragment extends Fragment implements ListSongAdapter.OnClickItemListSong {
 

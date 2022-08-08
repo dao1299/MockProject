@@ -1,4 +1,4 @@
-package com.example.mockproject.adapter;
+package com.example.mockproject.view.main_activity.adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mockproject.databinding.LayoutItemListSongBinding;
@@ -15,10 +13,10 @@ import com.example.mockproject.model.SongModel;
 
 import java.util.List;
 
-public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHolder>{
+public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHolder> {
     private static final String TAG = "ListSongAdapter";
-    private OnClickItemListSong onClickItemListSong;
     List<SongModel> songModelList;
+    private OnClickItemListSong onClickItemListSong;
 
     public ListSongAdapter(OnClickItemListSong onClickItemListSong, List<SongModel> songModelList) {
         this.onClickItemListSong = onClickItemListSong;
@@ -29,7 +27,6 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
 //        super(diffCallback);
 //        this.onClickItemListSong = onClickItemListSong;
 //    }
-
 
 
     @NonNull
@@ -46,10 +43,10 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SongModel songModel = songModelList.get(position);
-        Log.i(TAG, "onBindViewHolder: "+songModel);
+        Log.i(TAG, "onBindViewHolder: " + songModel);
         if (songModel != null) {
             holder.binding.setSongModel(songModel);
-            holder.binding.setListener(onClickItemListSong);
+            holder.binding.setListener( onClickItemListSong);
             holder.binding.executePendingBindings();
         }
     }

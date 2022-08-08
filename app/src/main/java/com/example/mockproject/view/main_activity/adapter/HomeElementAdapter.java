@@ -1,4 +1,4 @@
-package com.example.mockproject.adapter;
+package com.example.mockproject.view.main_activity.adapter;
 
 import android.content.Context;
 import android.util.Log;

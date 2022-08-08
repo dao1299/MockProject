@@ -1,4 +1,4 @@
-package com.example.mockproject.view.activity;
+package com.example.mockproject.view.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mockproject.R;
+import com.example.mockproject.view.main_activity.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
     @Override

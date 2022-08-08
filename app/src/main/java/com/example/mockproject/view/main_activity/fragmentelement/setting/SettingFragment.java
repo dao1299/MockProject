@@ -1,4 +1,4 @@
-package com.example.mockproject.view.fragment;
+package com.example.mockproject.view.main_activity.fragmentelement.setting;
 
 import androidx.lifecycle.ViewModelProvider;
 

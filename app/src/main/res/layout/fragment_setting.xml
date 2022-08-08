@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="#181B2C"
     android:weightSum="10"
-    tools:context=".view.fragment.SettingFragment">
+    tools:context=".view.main_activity.fragmentelement.setting.SettingFragment">
 
     <LinearLayout style="@style/style_item_menu">
 

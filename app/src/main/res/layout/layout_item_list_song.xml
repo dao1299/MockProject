@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.example.mockproject.adapter.ListSongAdapter.OnClickItemListSong" />
+            type="com.example.mockproject.view.main_activity.adapter.ListSongAdapter.OnClickItemListSong" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

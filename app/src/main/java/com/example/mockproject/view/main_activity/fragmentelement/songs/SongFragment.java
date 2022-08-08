@@ -1,6 +1,4 @@
-package com.example.mockproject.view.fragment;
-
-import androidx.lifecycle.ViewModelProvider;
+package com.example.mockproject.view.main_activity.fragmentelement.songs;
 
 import android.os.Bundle;
 
@@ -13,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mockproject.R;
-import com.example.mockproject.adapter.ViewPagerSongsFragmentAdapter;
 import com.example.mockproject.databinding.FragmentSongBinding;
+import com.example.mockproject.view.main_activity.adapter.ViewPagerSongsFragmentAdapter;
 import com.example.mockproject.viewmodel.SongViewModel;
 import com.google.android.material.tabs.TabLayoutMediator;
 

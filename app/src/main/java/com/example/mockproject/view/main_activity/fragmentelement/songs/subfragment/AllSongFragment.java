@@ -1,6 +1,10 @@
-package com.example.mockproject;
+package com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,18 +13,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.mockproject.adapter.ListSongAdapter;
 import com.example.mockproject.databinding.FragmentAllSongBinding;
+import com.example.mockproject.view.main_activity.adapter.ListSongAdapter;
 import com.example.mockproject.model.SongModel;
-import com.example.mockproject.viewmodel.HomeViewModel;
 import com.example.mockproject.viewmodel.SongViewModel;
 
-public class AllSongFragment extends Fragment implements ListSongAdapter.OnClickItemListSong{
+public class AllSongFragment extends Fragment implements ListSongAdapter.OnClickItemListSong {
 
     private static final String TAG = "AllSongFragment";
     FragmentAllSongBinding fragmentAllSongBinding;
@@ -42,13 +40,13 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
         super.onViewCreated(view, savedInstanceState);
         songViewModel = new ViewModelProvider(this).get(SongViewModel.class);
 
-        ListSongAdapter listSongAdapter = new ListSongAdapter(this,songViewModel.getListSongs(requireActivity()));
-        fragmentAllSongBinding.rcvAllSongs.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL,false));
+        ListSongAdapter listSongAdapter = new ListSongAdapter(this, songViewModel.getListSongs(requireActivity()));
+        fragmentAllSongBinding.rcvAllSongs.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL, false));
         fragmentAllSongBinding.rcvAllSongs.setAdapter(listSongAdapter);
     }
 
     @Override
     public void onClickItemSong(SongModel songModel, View view) {
-        Log.i(TAG, "onClickItemSong: "+songModel);
+        Log.i(TAG, "onClickItemSong: " + songModel);
     }
 }
