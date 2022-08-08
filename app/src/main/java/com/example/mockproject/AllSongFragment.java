@@ -41,7 +41,8 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         songViewModel = new ViewModelProvider(this).get(SongViewModel.class);
-        ListSongAdapter listSongAdapter = new ListSongAdapter(this,songViewModel.getListSongs(requireActivity().getBaseContext()));
+
+        ListSongAdapter listSongAdapter = new ListSongAdapter(this,songViewModel.getListSongs(requireActivity()));
         fragmentAllSongBinding.rcvAllSongs.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL,false));
         fragmentAllSongBinding.rcvAllSongs.setAdapter(listSongAdapter);
     }

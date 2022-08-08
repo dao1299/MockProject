@@ -1,5 +1,6 @@
 package com.example.mockproject.viewmodel;
 
+import android.app.Activity;
 import android.content.Context;
 
 import androidx.lifecycle.ViewModel;
@@ -10,7 +11,7 @@ import com.example.mockproject.utils.SongsUtils;
 import java.util.List;
 
 public class SongViewModel extends ViewModel {
-    public List<SongModel> getListSongs(Context context){
-        return new SongsUtils().getSongs(context.getContentResolver());
+    public List<SongModel> getListSongs(Activity context){
+        return new SongsUtils().getListSongs(context);
     }
 }

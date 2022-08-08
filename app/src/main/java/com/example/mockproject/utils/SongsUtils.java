@@ -1,10 +1,18 @@
 package com.example.mockproject.utils;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.MediaStore;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.example.mockproject.model.SongModel;
 import com.example.mockproject.model.SongModel;
@@ -12,13 +20,36 @@ import com.example.mockproject.model.SongModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongsUtils {
+public class SongsUtils extends Activity{
     private static final String TAG = "SongsUtils";
 
-    public List<SongModel> getSongs(ContentResolver contentResolver){
+//    private boolean hasStoragePermission(Context context) {
+//        int permission = ContextCompat.checkSelfPermission(
+//                context,
+//                Manifest.permission.READ_EXTERNAL_STORAGE);
+//        return permission == PackageManager.PERMISSION_GRANTED;
+//    }
+//
+//    private List<SongModel> checkPermission(Activity context) {
+//        boolean hasPermission = hasStoragePermission(context);
+//        if (hasPermission) {
+//            return getListSongs(context);
+//        } else {
+//            ActivityCompat.requestPermissions(context,
+//                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+//                    1);
+//        }
+//        return new ArrayList<>();
+//    }
+//
+//    public List<SongModel> getSongs(Activity context) {
+//        return checkPermission(context);
+//    }
+
+    public List<SongModel> getListSongs(Activity activity){
         List<SongModel> songModelList = new ArrayList<>();
         String selection = "is_music=1";
-        Cursor cursor = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+        Cursor cursor = activity.getBaseContext().getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                 new String[]{
                         MediaStore.Audio.Media._ID,
                         MediaStore.Audio.Media.TITLE,
@@ -33,7 +64,6 @@ public class SongsUtils {
                 },selection,null,null);
         Log.i(TAG, "getMusic: "+cursor.getCount()+" "+Thread.currentThread().getName());
         while(cursor.moveToNext()){
-
             SongModel SongModel = new SongModel(
                     Long.parseLong(cursor.getString(0)),
                     cursor.getString(1),
@@ -54,4 +84,5 @@ public class SongsUtils {
         cursor.close();
         return songModelList;
     }
+
 }

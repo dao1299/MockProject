@@ -1,5 +1,7 @@
 package com.example.mockproject.view.activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,8 +9,11 @@ import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -22,6 +27,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final int READ_EXTERNAL_STORAGE = 1;
     NavHostFragment navHostFragment;
     NavController navController;
     private AppBarConfiguration mAppBarConfiguration;
@@ -32,7 +38,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setupBottomNavigation();
         setupAppbar();
+        checkPermission();
     }
+
+    private boolean hasStoragePermission() {
+        int permission = ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+        return permission == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void checkPermission() {
+        boolean hasPermission = hasStoragePermission();
+        if (!hasPermission)
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    READ_EXTERNAL_STORAGE);
+    }
+
+
 
     private void setupBottomNavigation() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
