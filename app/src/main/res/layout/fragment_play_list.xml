@@ -1,15 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:background="@color/background_color"
+    android:orientation="vertical"
     tools:context=".view.main_activity.fragmentelement.songs.subfragment.PlayListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/Playlists" />
+        android:layout_height="140dp"
+        android:orientation="horizontal"
 
-</FrameLayout>
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/image_song_sample"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtTitlePlaylist1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/txtNumPlaylist1"
+                android:text="@string/my_top_tracks"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtNumPlaylist1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="6dp"
+                android:text="100 Songs" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/txtTitlePlaylist1"
+                android:layout_alignBottom="@id/txtNumPlaylist1"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_play_playlist" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/background_sample"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtTitlePlaylist2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/txtNumPlaylist2"
+                android:text="Latest Added"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtNumPlaylist2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="6dp"
+                android:text="323 Songs" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/txtTitlePlaylist2"
+                android:layout_alignBottom="@id/txtNumPlaylist2"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_play_playlist" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="horizontal"
+
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/background_sample"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtTitlePlaylist3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/txtNumPlaylist3"
+                android:text="History"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtNumPlaylist3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="6dp"
+                android:text="450 Songs" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/txtTitlePlaylist3"
+                android:layout_alignBottom="@id/txtNumPlaylist3"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_play_playlist" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/image_song_sample"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtTitlePlaylist4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/txtNumPlaylist4"
+                android:text="Favourites"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtNumPlaylist4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="6dp"
+                android:text="966 Songs" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/txtTitlePlaylist4"
+                android:layout_alignBottom="@id/txtNumPlaylist4"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_play_playlist" />
+        </RelativeLayout>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        apps:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/recycler_view_fragment_home"
+        android:orientation="horizontal"/>
+</LinearLayout>

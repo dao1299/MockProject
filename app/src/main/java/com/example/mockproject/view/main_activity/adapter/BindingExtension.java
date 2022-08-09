@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.ImageView;
 
 import androidx.annotation.IdRes;
 import androidx.databinding.BindingAdapter;
@@ -34,5 +35,10 @@ public class BindingExtension {
             imageSong.setImageResource(R.drawable.ic_song);
         }
 
+    }
+
+    @BindingAdapter({"setResourceImageArtist"})
+    public static void setImageArtist(ImageView img, int srcImage){
+        img.setImageResource(srcImage);
     }
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:apps="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.artist_fragment.ArtistModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/background_color"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imgCoverArtist"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:foreground="@drawable/border_playlist_rectangle"
+            android:scaleType="fitXY"
+
+            setResourceImageArtist="@{model.srcAvarArtist}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtNameArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{model.nameArtist}"
+            apps:text="Ronaldo"
+            android:layout_marginTop="6dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/imgCoverArtist"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/numAlbumsArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            apps:text="4 Albums"
+            android:text="@{model.numAlbumsArtist}"
+            android:textColor="#C1C0C0"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgCoverArtist"
+            app:layout_constraintTop_toBottomOf="@id/txtNameArtist" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            apps:text="38 Songs"
+            android:text="@{model.numSongsArtist}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtNameArtist"
+            app:layout_constraintStart_toEndOf="@id/numAlbumsArtist"
+            android:textColor="#C1C0C0"
+            android:layout_marginStart="10dp"
+            android:textSize="14sp"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_menu"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

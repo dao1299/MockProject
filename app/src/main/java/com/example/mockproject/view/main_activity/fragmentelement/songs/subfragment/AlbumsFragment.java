@@ -10,11 +10,6 @@ import android.view.ViewGroup;
 
 import com.example.mockproject.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AlbumsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AlbumsFragment extends Fragment {
 
     public static AlbumsFragment newInstance() {

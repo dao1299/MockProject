@@ -37,4 +37,5 @@
     <string name="all_songs">All Songs</string>
     <string name="artists">Artists</string>
     <string name="genres">Genres</string>
+    <string name="my_top_tracks">My Top Tracks</string>
 </resources>

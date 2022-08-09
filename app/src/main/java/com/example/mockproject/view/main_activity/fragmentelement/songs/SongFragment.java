@@ -36,7 +36,6 @@ public class SongFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        ViewPagerSongsFragmentAdapter viewPagerSongsFragmentAdapter = new ViewPagerSongsFragmentAdapter(this)
         fragmentSongBinding.viewPagerSongs.setAdapter(new ViewPagerSongsFragmentAdapter(this));
         new TabLayoutMediator(fragmentSongBinding.tabLayoutSongs,fragmentSongBinding.viewPagerSongs,(tab, position) -> {
             switch (position){

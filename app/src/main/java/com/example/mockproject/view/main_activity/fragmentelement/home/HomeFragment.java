@@ -36,9 +36,7 @@ public class HomeFragment extends Fragment implements ListSongAdapter.OnClickIte
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         fragmentHomeBinding = FragmentHomeBinding.inflate(getLayoutInflater());
-//        return inflater.inflate(R.layout.fragment_home, container, false);
-        View view = fragmentHomeBinding.getRoot();
-        return view;
+        return fragmentHomeBinding.getRoot();
     }
 
     @Override
