@@ -149,35 +149,6 @@
         android:layout_toEndOf="@id/btnPlaySong"
         android:src="@drawable/ic_next_song" />
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/btnRepeatSong"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@id/btnPlaySong"-->
-    <!--        android:layout_marginStart="20dp"-->
-    <!--        android:layout_marginEnd="20dp"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:src="@drawable/ic_repeat"/>-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/lableRepeat"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@id/btnRepeatSong"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:layout_marginTop="6dp"-->
-    <!--        android:text="Repeat" />-->
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/btnShuffle"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignTop="@id/btnRepeatSong"-->
-    <!--        android:layout_alignBottom="@id/btnRepeatSong"-->
-    <!--        android:layout_alignParentStart="true"-->
-    <!--        android:layout_toStartOf="@id/lableRepeat"-->
-    <!--        android:src="@drawable/ic_shuffle" />-->
-
     <LinearLayout
         android:id="@+id/containerRepeatButton"
         android:layout_width="wrap_content"

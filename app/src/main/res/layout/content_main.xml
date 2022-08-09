@@ -11,11 +11,84 @@
         android:id="@+id/nav_host_fragment_content_main"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@id/bottomNav"
         android:layout_alignParentTop="true"
         app:defaultNavHost="true"
         app:navGraph="@navigation/bottom_nav" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#4Dffffff"
+        android:layout_above="@id/bottomNav">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgSongPlayedBottom"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:foreground="@drawable/border_image_circle"
+            android:src="@drawable/selena_gomez"
+            app:shapeAppearanceOverlay="@style/Circular" />
+
+        <TextView
+            android:id="@+id/txtNameSongPlayedBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/guideline"
+            android:layout_toEndOf="@id/imgSongPlayedBottom"
+            android:text="La boi vi co em "
+            android:textStyle="bold" />
+        <View
+            android:id="@+id/guideline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/txtNameArtistPlayedBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selena Gomez"
+            android:layout_toEndOf="@id/imgSongPlayedBottom"
+            android:layout_below="@id/guideline"
+            />
+
+        <ImageView
+            android:id="@+id/btnNextPlayedBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/ic_next_song" />
+
+        <ImageView
+            android:id="@+id/btnPlayPlayedBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/btnNextPlayedBottom"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:src="@drawable/ic_play_song" />
+
+        <ImageView
+            android:id="@+id/btnPreviousPlayedBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/btnPlayPlayedBottom"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:src="@drawable/ic_previous_song" />
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
@@ -25,4 +98,6 @@
         android:background="@color/background_color"
         app:itemTextColor="@color/nav_text_item_select"
         app:menu="@menu/bottom_nav" />
+
+
 </RelativeLayout>
