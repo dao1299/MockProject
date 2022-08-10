@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@color/background_color"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/txtNameSongNoti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/imgThumbSongNoti"
+        android:layout_toEndOf="@id/imgThumbSongNoti"
+        android:text="Black or White"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtNameArtistNoti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtNameSongNoti"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/imgThumbSongNoti"
+        android:text="Michael Jackson"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/btnPreviousSongNoti"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/txtNameArtistNoti"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@id/imgThumbSongNoti"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_previous_song" />
+
+    <ImageView
+        android:id="@+id/btnPlaySongNoti"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/txtNameArtistNoti"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/btnPreviousSongNoti"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_play_song" />
+
+    <ImageView
+        android:id="@+id/btnNextSongNoti"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/txtNameArtistNoti"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/btnPlaySongNoti"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_next_song" />
+
+    <ImageView
+        android:id="@+id/btnCloseSongNoti"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/txtNameArtistNoti"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/btnNextSongNoti"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_close_button" />
+
+    <ImageView
+        android:id="@+id/imgThumbSongNoti"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="20dp"
+        android:alpha="0.5"
+        android:foreground="@drawable/border_playlist_rectangle"
+        android:scaleType="fitXY"
+        android:src="@drawable/selena_gomez" />
+
+
+</RelativeLayout>
