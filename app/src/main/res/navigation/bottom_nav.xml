@@ -3,21 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/navigation">
 
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/homeFragment">
+        <fragment
+            android:id="@+id/songFragment"
+            android:name="com.example.mockproject.view.main_activity.fragmentelement.songs.SongFragment"
+            android:label="@string/song"
+            tools:layout="@layout/fragment_song" />
+        <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.example.mockproject.view.main_activity.fragmentelement.home.HomeFragment"
+            android:label="@string/home"
+            tools:layout="@layout/fragment_home" />
+        <fragment
+            android:id="@+id/settingFragment"
+            android:name="com.example.mockproject.view.main_activity.fragmentelement.setting.SettingFragment"
+            android:label="@string/setting"
+            tools:layout="@layout/fragment_setting" />
+        <action
+            android:id="@+id/action_global_fragmentNowPlaying2"
+            app:destination="@id/fragmentNowPlaying2" />
+    </navigation>
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.mockproject.view.main_activity.fragmentelement.home.HomeFragment"
-        android:label="@string/home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/songFragment"
-        android:name="com.example.mockproject.view.main_activity.fragmentelement.songs.SongFragment"
-        android:label="@string/song"
-        tools:layout="@layout/fragment_song" />
-    <fragment
-        android:id="@+id/settingFragment"
-        android:name="com.example.mockproject.view.main_activity.fragmentelement.setting.SettingFragment"
-        android:label="@string/setting"
-        tools:layout="@layout/fragment_setting" />
+        android:id="@+id/fragmentNowPlaying2"
+        android:name="com.example.mockproject.view.main_activity.fragmentelement.nowplaying.FragmentNowPlaying"
+        android:label="fragment_fragment_now_playing"
+        tools:layout="@layout/play_songs" >
+        <action
+            android:id="@+id/action_fragmentNowPlaying2_to_navigation"
+            app:destination="@id/navigation" />
+    </fragment>
 </navigation>
