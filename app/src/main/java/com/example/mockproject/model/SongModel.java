@@ -1,6 +1,8 @@
 package com.example.mockproject.model;
 
-public class SongModel {
+import java.io.Serializable;
+
+public class SongModel implements Serializable {
     private long idSong;
     private String nameSong;
     private String artistSong;

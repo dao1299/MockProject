@@ -1,5 +1,6 @@
 package com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mockproject.databinding.FragmentAllSongBinding;
+import com.example.mockproject.service.PlayMediaService;
 import com.example.mockproject.view.main_activity.adapter.ListSongAdapter;
 import com.example.mockproject.model.SongModel;
 import com.example.mockproject.viewmodel.SongViewModel;
@@ -39,7 +41,6 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         songViewModel = new ViewModelProvider(this).get(SongViewModel.class);
-
         ListSongAdapter listSongAdapter = new ListSongAdapter(this, songViewModel.getListSongs(requireActivity()));
         fragmentAllSongBinding.rcvAllSongs.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL, false));
         fragmentAllSongBinding.rcvAllSongs.setAdapter(listSongAdapter);
@@ -47,6 +48,9 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
 
     @Override
     public void onClickItemSong(SongModel songModel, View view) {
-        Log.i(TAG, "onClickItemSong: " + songModel);
+        Intent intent = new Intent(requireActivity(), PlayMediaService.class);
+        Log.i(TAG, "onClickItemSong: "+songModel);
+        intent.putExtra("song",songModel);
+        requireActivity().startService(intent);
     }
 }

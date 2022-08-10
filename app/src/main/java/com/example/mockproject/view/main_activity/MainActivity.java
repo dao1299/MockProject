@@ -4,12 +4,16 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -17,6 +21,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.mockproject.R;
+import com.example.mockproject.databinding.ActivityMainBinding;
+import com.example.mockproject.databinding.ContentMainBinding;
+import com.example.mockproject.viewmodel.MainViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -25,15 +32,19 @@ public class MainActivity extends AppCompatActivity {
     private static final int READ_EXTERNAL_STORAGE = 1;
     NavHostFragment navHostFragment;
     NavController navController;
+    ActivityMainBinding activityMainBinding;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        activityMainBinding.setViewModel(mainViewModel);
         setupBottomNavigation();
         setupAppbar();
         checkPermission();
+        eventDetailPlayingSong();
     }
 
     private boolean hasStoragePermission() {
@@ -90,4 +101,14 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    public void eventDetailPlayingSong(){
+        findViewById(R.id.containerControlBottom).setOnClickListener(v->{
+            Navigation.findNavController(this,R.id.nav_host_fragment_content_main).navigate(R.id.action_global_fragmentNowPlaying2);
+            v.setVisibility(View.GONE);
+        });
+
+    }
+
+
 }

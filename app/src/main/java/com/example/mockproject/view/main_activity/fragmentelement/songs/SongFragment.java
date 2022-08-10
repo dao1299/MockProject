@@ -12,11 +12,13 @@ import android.view.ViewGroup;
 
 import com.example.mockproject.R;
 import com.example.mockproject.databinding.FragmentSongBinding;
+import com.example.mockproject.model.SongModel;
+import com.example.mockproject.view.main_activity.adapter.ListSongAdapter;
 import com.example.mockproject.view.main_activity.adapter.ViewPagerSongsFragmentAdapter;
 import com.example.mockproject.viewmodel.SongViewModel;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-public class SongFragment extends Fragment {
+public class SongFragment extends Fragment{
 
     private SongViewModel mViewModel;
 

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_height="match_parent"
     android:background="@color/background_color">
 
@@ -156,7 +157,7 @@
         android:layout_below="@id/btnPlaySong"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
         <ImageView
@@ -199,6 +200,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btnPlaySong"
         android:layout_toStartOf="@id/containerShuffleButton"
+        android:layout_alignParentBottom="true"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -218,6 +220,7 @@
         android:id="@+id/containerEQButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_below="@id/btnPlaySong"
         android:layout_toEndOf="@id/containerRepeatButton"
         android:gravity="center"
@@ -238,6 +241,7 @@
     <LinearLayout
         android:id="@+id/containerFavoriteButton"
         android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnPlaySong"
         android:layout_toEndOf="@id/containerEQButton"
