@@ -10,6 +10,7 @@ public class MyApplication extends Application {
     public static final String PREVIOUS_SONG = "PREVIOUS_SONG";
     public static final String NEXT_SONG = "NEXT_SONG";
     public static final String PLAY_PAUSE_SONG = "PLAY_PAUSE_SONG";
+    public static final String FINISH_SERVICE = "FINISH_SERVICE";
 
     @Override
     public void onCreate() {

@@ -9,6 +9,8 @@ public class SongsRepo {
     List<SongModel> songModelList;
     int kindOfListSongs = -1;
     int currentSongIndex = -1;
+    boolean isRepeat = false;
+    boolean isShuffle = false;
 
     private static volatile SongsRepo instance = null;
 
@@ -50,5 +52,21 @@ public class SongsRepo {
 
     public SongModel getSongCurrent(){
         return songModelList.get(currentSongIndex);
+    }
+
+    public boolean isRepeat() {
+        return isRepeat;
+    }
+
+    public void setRepeat(boolean repeat) {
+        isRepeat = repeat;
+    }
+
+    public boolean isShuffle() {
+        return isShuffle;
+    }
+
+    public void setShuffle(boolean shuffle) {
+        isShuffle = shuffle;
     }
 }

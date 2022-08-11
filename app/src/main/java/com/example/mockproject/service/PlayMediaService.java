@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.IBinder;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -23,16 +24,18 @@ import com.example.mockproject.view.main_activity.adapter.BindingExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class PlayMediaService extends Service {
 
     public static final String NOTIFICATION_CHANNEL_ID = "notification_channel";
     private static final String TAG = "PlayMediaService";
-    //    private final IBinder playerBinder = new MusicBinder();
     private List<SongModel> songModelList = new ArrayList<>();
     private int currentIndex = -1;
     private SongModel songCurrent;
     private Boolean isPlaying=false;
+    private Boolean isShuffle=false;
+    private Boolean isRepeat=false;
 
 
     SongsRepo songsRepo = SongsRepo.getInstance();
@@ -41,19 +44,11 @@ public class PlayMediaService extends Service {
 
     MediaPlayer mediaPlayer = singletonMedia.mediaPlayer;
 
-
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
-
-//    public class MusicBinder extends Binder{
-//        public PlayMediaService getService(){
-//            return PlayMediaService.this;
-//        }
-//    }
 
     @Override
     public void onCreate() {
@@ -66,9 +61,9 @@ public class PlayMediaService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+        isShuffle=songsRepo.isShuffle();
+        isRepeat=songsRepo.isRepeat();
         songModelList = songsRepo.getSongModelList();
-//        currentIndex = songsRepo.getCurrentSongIndex();
         if (currentIndex != songsRepo.getCurrentSongIndex()){
             Log.i(TAG, "onStartCommand: changeSong");
             isPlaying = false;
@@ -78,11 +73,6 @@ public class PlayMediaService extends Service {
         currentIndex = songsRepo.getCurrentSongIndex();
         songCurrent = songModelList.get(currentIndex);
         Log.i(TAG, "onStartCommand: currnet: "+songCurrent);
-//        Log.i(TAG, "onStartCommand: " + songModel);
-//        initNotification(R.drawable.ic_song);
-//        mediaPlayer = MediaPlayer.create(this, Uri.parse(songModel.getUriSong()));
-//        if (mediaPlayer != null) mediaPlayer.release();
-//        playPauseSong();
         if (intent!=null && intent.getAction()!=null)
             handleAction(intent.getAction());
         else
@@ -91,38 +81,19 @@ public class PlayMediaService extends Service {
     }
 
     private void initNotification(int iconPlayPause) {
-//        Intent intentActivity = new Intent(this, MainActivity.class);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intentActivity, PendingIntent.FLAG_UPDATE_CURRENT);
-
-//        RemoteViews remoteView = new RemoteViews(getPackageName(), R.layout.layout_notification);
-//        remoteView.setTextViewText(R.id.txtNameSongNoti, songCurrent.getNameSong());
-//        remoteView.setTextViewText(R.id.txtNameArtistNoti, songCurrent.getArtistSong());
         Bitmap bitmap = BindingExtension.getBitmap(songCurrent.getUriSong());
-//        if (bitmap == null) {
-//            remoteView.setImageViewResource(R.id.imgThumbSongNoti, R.drawable.ic_song);
-//        } else {
-//            remoteView.setImageViewBitmap(R.id.imgThumbSongNoti, bitmap);
-//        }
 
         Intent playPauseButtonIntent = new Intent(this,Broadcast.class).setAction(MyApplication.PLAY_PAUSE_SONG);
         PendingIntent playPausePending =PendingIntent.getBroadcast(this,0,playPauseButtonIntent,PendingIntent.FLAG_IMMUTABLE);
 
-//        remoteView.setTextViewText(R.id.txtTitleNoti, song.getNameSong()+" - " +song.getSingerSong());
+        Intent previousButtonIntent = new Intent(this,Broadcast.class).setAction(MyApplication.PREVIOUS_SONG);
+        PendingIntent previousPending = PendingIntent.getBroadcast(this,0,previousButtonIntent,PendingIntent.FLAG_IMMUTABLE);
 
+        Intent nextButtonIntent = new Intent(this,Broadcast.class).setAction(MyApplication.NEXT_SONG);
+        PendingIntent nextPending = PendingIntent.getBroadcast(this,0,nextButtonIntent,PendingIntent.FLAG_IMMUTABLE);
 
-//        remoteView.setOnClickPendingIntent(R.id.btnPlayPauseNoti,getPendingIntent());
-
-//        remoteView.setOnClickPendingIntent(R.id.btnNextNoti,getPendingIntent(3,song));
-//        remoteView.setOnClickPendingIntent(R.id.btnPreviousNoti,getPendingIntent(4,song));
-//        remoteView.setOnClickPendingIntent(R.id.btnClearServiceNoti,getPendingIntent(6,song));
-
-//        if (mediaPlayer!=null && mediaPlayer.isPlaying()){
-//            remoteView.setOnClickPendingIntent(R.id.btnPlayPauseNoti,getPendingIntent(1,song));
-//            remoteView.setImageViewResource(R.id.btnPlayPauseNoti,R.drawable.pause);
-//        }else{
-//            remoteView.setOnClickPendingIntent(R.id.btnPlayPauseNoti,getPendingIntent(2,song));
-//            remoteView.setImageViewResource(R.id.btnPlayPauseNoti,R.drawable.play);
-//        }
+        Intent finishButtonIntent = new Intent(this,Broadcast.class).setAction(MyApplication.FINISH_SERVICE);
+        PendingIntent finishPending  = PendingIntent.getBroadcast(this,0,finishButtonIntent, PendingIntent.FLAG_IMMUTABLE);
 
         Notification notification = new NotificationCompat.Builder(getApplication(), NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_song_checked)
@@ -130,14 +101,31 @@ public class PlayMediaService extends Service {
                 .setContentText(songCurrent.getArtistSong())
                 .setLargeIcon(bitmap)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
-                .addAction(R.drawable.ic_previous_song,"11123",playPausePending)
-                .addAction(iconPlayPause,"12",playPausePending)
-                .addAction(R.drawable.ic_next_song,"12443",playPausePending)
-                .addAction(R.drawable.ic_close_button,"playpause",playPausePending)
+                .addAction(R.drawable.ic_previous_song,"previous",previousPending)
+                .addAction(iconPlayPause,"play_pause",playPausePending)
+                .addAction(R.drawable.ic_next_song,"next",nextPending)
+                .addAction(R.drawable.ic_close_button,"finish",finishPending)
                 .setSound(null)
                 .build();
 
         startForeground(1, notification);
+    }
+
+    private void handleAction(String action) {
+        switch (action) {
+            case MyApplication.PLAY_PAUSE_SONG:
+                playPauseSong();
+                break;
+            case MyApplication.PREVIOUS_SONG:
+                previousSong();
+                break;
+            case MyApplication.NEXT_SONG:
+                nextSong();
+                break;
+            case MyApplication.FINISH_SERVICE:
+                finishService();
+                break;
+        }
     }
 
     private void playPauseSong() {
@@ -148,28 +136,57 @@ public class PlayMediaService extends Service {
             isPlaying=false;
         }
         else{
-            if (mediaPlayer!=null)
-            {
-                mediaPlayer.start();
-
-            }else{
-                mediaPlayer = MediaPlayer.create(this, Uri.parse(songCurrent.getUriSong()));
-                mediaPlayer.start();
-            }
+            if (mediaPlayer==null) mediaPlayer = MediaPlayer.create(this, Uri.parse(songCurrent.getUriSong()));
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    nextSong();
+                }
+            });
             isPlaying=true;
-
             initNotification(R.drawable.ic_pause);
         }
     }
 
+    private void finishService() {
+        Log.i(TAG, "finishService: ");
+        stopSelf();
+        mediaPlayer.release();
+        mediaPlayer=null;
+    }
 
-
-    private void handleAction(String action) {
-        switch (action) {
-            case MyApplication.PLAY_PAUSE_SONG:
-                playPauseSong();
-                break;
+    private void nextSong() {
+        Log.i(TAG, "nextSong: ");
+//        previousIndex = currentIndex;
+        if (isShuffle){
+            Random random = new Random();
+            currentIndex = random.nextInt(songModelList.size());
+        }else{
+            if (currentIndex==songModelList.size()-1) currentIndex=0;
+            else currentIndex++;
         }
+
+        songCurrent = songModelList.get(currentIndex);
+        songsRepo.setCurrentSongIndex(currentIndex);
+        isPlaying = false;
+        mediaPlayer.release();
+        mediaPlayer = null;
+        playPauseSong();
+    }
+
+    private void previousSong() {
+        Log.i(TAG, "previousSong: ");
+        if (currentIndex==0)
+            currentIndex=songModelList.size()-1;
+        else
+            currentIndex--;
+        songsRepo.setCurrentSongIndex(currentIndex);
+        songCurrent = songModelList.get(currentIndex);
+        isPlaying = false;
+        mediaPlayer.release();
+        mediaPlayer = null;
+        playPauseSong();
     }
 
 
