@@ -7,6 +7,10 @@ import android.os.Build;
 
 public class MyApplication extends Application {
     public static final String NOTIFICATION_CHANNEL_ID = "notification_channel";
+    public static final String PREVIOUS_SONG = "PREVIOUS_SONG";
+    public static final String NEXT_SONG = "NEXT_SONG";
+    public static final String PLAY_PAUSE_SONG = "PLAY_PAUSE_SONG";
+
     @Override
     public void onCreate() {
         super.onCreate();

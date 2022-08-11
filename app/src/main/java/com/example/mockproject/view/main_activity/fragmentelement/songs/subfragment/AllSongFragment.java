@@ -63,7 +63,9 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
             songsRepo.setKindOfListSongs(KIND_OF_LIST_SONG);
             songsRepo.setSongModelList(songModelList);
         };
-        songsRepo.setCurrentSongIndex(songModelList.indexOf(songModel));
+        int index = songModelList.indexOf(songModel);
+        songsRepo.setCurrentSongIndex(index);
+        Log.i(TAG, "onClickItemSong: "+index+" : "+songModel);
         Intent intent = new Intent(requireActivity(),PlayMediaService.class);
 
         requireActivity().startService(intent);

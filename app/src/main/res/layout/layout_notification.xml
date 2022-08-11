@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="@color/background_color"
+    android:background="@color/black"
     android:padding="10dp">
 
     <TextView
@@ -12,12 +12,14 @@
         android:layout_alignTop="@id/imgThumbSongNoti"
         android:layout_toEndOf="@id/imgThumbSongNoti"
         android:text="Black or White"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtNameArtistNoti"
         android:layout_width="wrap_content"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtNameSongNoti"
         android:layout_marginTop="10dp"
