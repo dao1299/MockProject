@@ -9,7 +9,6 @@ import java.util.List;
 public class SingletonMedia {
 
     MediaPlayer mediaPlayer;
-    List<SongModel> songModelList;
     private static volatile SingletonMedia instance = null;
     private SingletonMedia() { }
 
@@ -25,7 +24,4 @@ public class SingletonMedia {
         return instance;
     }
 
-    public void setListSong(List<SongModel> listSong){
-        songModelList = listSong;
-    }
 }

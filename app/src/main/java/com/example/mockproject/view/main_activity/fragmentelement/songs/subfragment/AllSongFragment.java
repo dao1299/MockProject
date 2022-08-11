@@ -15,16 +15,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mockproject.databinding.FragmentAllSongBinding;
+import com.example.mockproject.repository.SongsRepo;
 import com.example.mockproject.service.PlayMediaService;
 import com.example.mockproject.view.main_activity.adapter.ListSongAdapter;
 import com.example.mockproject.model.SongModel;
 import com.example.mockproject.viewmodel.SongViewModel;
 
-public class AllSongFragment extends Fragment implements ListSongAdapter.OnClickItemListSong {
+import java.util.List;
 
+public class AllSongFragment extends Fragment implements ListSongAdapter.OnClickItemListSong {
+    private static final int KIND_OF_LIST_SONG = 1;
     private static final String TAG = "AllSongFragment";
     FragmentAllSongBinding fragmentAllSongBinding;
     SongViewModel songViewModel;
+    SongsRepo songsRepo = SongsRepo.getInstance();
+    List<SongModel> songModelList;
 
     public static AllSongFragment newInstance() {
         return new AllSongFragment();
@@ -41,16 +46,26 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         songViewModel = new ViewModelProvider(this).get(SongViewModel.class);
-        ListSongAdapter listSongAdapter = new ListSongAdapter(this, songViewModel.getListSongs(requireActivity()));
+        songModelList = songViewModel.getListSongs(requireActivity());
+        ListSongAdapter listSongAdapter = new ListSongAdapter(this,songModelList);
         fragmentAllSongBinding.rcvAllSongs.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL, false));
         fragmentAllSongBinding.rcvAllSongs.setAdapter(listSongAdapter);
     }
 
     @Override
     public void onClickItemSong(SongModel songModel, View view) {
-        Intent intent = new Intent(requireActivity(), PlayMediaService.class);
-        Log.i(TAG, "onClickItemSong: "+songModel);
-        intent.putExtra("song",songModel);
+//        Intent intent = new Intent(requireActivity(), PlayMediaService.class);
+//        Log.i(TAG, "onClickItemSong: "+songModel);
+//        intent.putExtra("song",songModel);
+//        requireActivity().startService(intent);
+        songsRepo.setSongModelList(songModelList);
+        if (songsRepo.getKindOfListSongs()!=KIND_OF_LIST_SONG){
+            songsRepo.setKindOfListSongs(KIND_OF_LIST_SONG);
+            songsRepo.setSongModelList(songModelList);
+        };
+        songsRepo.setCurrentSongIndex(songModelList.indexOf(songModel));
+        Intent intent = new Intent(requireActivity(),PlayMediaService.class);
+
         requireActivity().startService(intent);
     }
 }

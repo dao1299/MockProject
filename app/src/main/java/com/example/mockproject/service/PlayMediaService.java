@@ -3,6 +3,8 @@ package com.example.mockproject.service;
 import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Path;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.IBinder;
@@ -14,6 +16,8 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.mockproject.R;
 import com.example.mockproject.model.SongModel;
+import com.example.mockproject.repository.SongsRepo;
+import com.example.mockproject.view.main_activity.adapter.BindingExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +28,12 @@ public class PlayMediaService extends Service {
     private static final String TAG = "PlayMediaService";
 //    private final IBinder playerBinder = new MusicBinder();
     private static List<SongModel> songModelList = new ArrayList<>();
-    MediaPlayer mediaPlayer;
 
 
+    SongsRepo songsRepo = SongsRepo.getInstance();
 
     SingletonMedia singletonMedia = SingletonMedia.getInstance();
+    MediaPlayer mediaPlayer = singletonMedia.mediaPlayer;
 
     @Nullable
     @Override
@@ -46,26 +51,34 @@ public class PlayMediaService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.i(TAG, "onCreate: ");
-        initNotification();
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        SongModel songModel = (SongModel) intent.getSerializableExtra("song");
+        SongModel songModel = songsRepo.getSongCurrent();
         Log.i(TAG, "onStartCommand: "+songModel);
+        initNotification(songModel);
 //        mediaPlayer = MediaPlayer.create(this, Uri.parse(songModel.getUriSong()));
-        if (singletonMedia.mediaPlayer ==null){
-            singletonMedia.mediaPlayer = MediaPlayer.create(this, Uri.parse(songModel.getUriSong()));
-            singletonMedia.mediaPlayer.start();
-        }
+        if (mediaPlayer != null) mediaPlayer.release();
+        playSong(songModel.getUriSong());
         return START_STICKY;
     }
 
-    private void initNotification() {
+    private void initNotification(SongModel songModel) {
 //        Intent intentActivity = new Intent(this, MainActivity.class);
 //        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intentActivity, PendingIntent.FLAG_UPDATE_CURRENT);
 
         RemoteViews remoteView = new RemoteViews(getPackageName(), R.layout.layout_notification);
+        remoteView.setTextViewText(R.id.txtNameSongNoti,songModel.getNameSong());
+        remoteView.setTextViewText(R.id.txtNameArtistNoti,songModel.getArtistSong());
+        Bitmap bitmap = BindingExtension.getBitmap(songModel.getUriSong());
+        if (bitmap==null){
+            remoteView.setImageViewResource(R.id.imgThumbSongNoti,R.drawable.ic_song);
+        }else{
+            remoteView.setImageViewBitmap(R.id.imgThumbSongNoti,bitmap);
+        }
+
 //        remoteView.setTextViewText(R.id.txtTitleNoti, song.getNameSong()+" - " +song.getSingerSong());
 
 
@@ -90,6 +103,11 @@ public class PlayMediaService extends Service {
                 .build();
 
         startForeground(1, notification);
+    }
+
+    private void playSong(String uri){
+        mediaPlayer = MediaPlayer.create(this,Uri.parse(uri));
+        mediaPlayer.start();
     }
 
 }
