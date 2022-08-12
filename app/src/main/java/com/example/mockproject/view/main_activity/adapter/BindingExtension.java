@@ -2,12 +2,14 @@ package com.example.mockproject.view.main_activity.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.IdRes;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.databinding.BindingAdapter;
 
 import com.example.mockproject.R;
@@ -50,4 +52,9 @@ public class BindingExtension {
         }
         return null;
     }
+
+//    @BindingAdapter({"android:src"})
+//    public static void setImageResource(ImageView img,int drawable) {
+//        img.setImageDrawable(AppCompatResources.getDrawable(img.getContext(),drawable));
+//    }
 }

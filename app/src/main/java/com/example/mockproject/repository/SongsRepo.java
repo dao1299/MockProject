@@ -8,9 +8,10 @@ import java.util.List;
 public class SongsRepo {
     List<SongModel> songModelList;
     int kindOfListSongs = -1;
-    int currentSongIndex = -1;
+    int currentSongIndex = 0;
     boolean isRepeat = false;
     boolean isShuffle = false;
+    boolean isPlaying = false;
 
     private static volatile SongsRepo instance = null;
 
@@ -68,5 +69,13 @@ public class SongsRepo {
 
     public void setShuffle(boolean shuffle) {
         isShuffle = shuffle;
+    }
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlaying(boolean playing) {
+        isPlaying = playing;
     }
 }

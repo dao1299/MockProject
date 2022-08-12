@@ -11,9 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mockproject.R;
 import com.example.mockproject.databinding.FragmentAllSongBinding;
 import com.example.mockproject.repository.SongsRepo;
 import com.example.mockproject.service.PlayMediaService;
@@ -54,10 +56,6 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
 
     @Override
     public void onClickItemSong(SongModel songModel, View view) {
-//        Intent intent = new Intent(requireActivity(), PlayMediaService.class);
-//        Log.i(TAG, "onClickItemSong: "+songModel);
-//        intent.putExtra("song",songModel);
-//        requireActivity().startService(intent);
         songsRepo.setSongModelList(songModelList);
         if (songsRepo.getKindOfListSongs()!=KIND_OF_LIST_SONG){
             songsRepo.setKindOfListSongs(KIND_OF_LIST_SONG);
@@ -69,5 +67,6 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
         Intent intent = new Intent(requireActivity(),PlayMediaService.class);
 
         requireActivity().startService(intent);
+
     }
 }

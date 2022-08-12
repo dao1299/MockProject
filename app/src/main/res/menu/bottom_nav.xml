@@ -16,4 +16,7 @@
         android:icon="@drawable/ic_state_setting"
         android:title="@string/setting"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/fragmentNowPlaying2"
+        android:visible="false"/>
 </menu>

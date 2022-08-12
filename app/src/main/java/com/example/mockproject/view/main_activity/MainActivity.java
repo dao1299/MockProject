@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     NavController navController;
     ActivityMainBinding activityMainBinding;
     private AppBarConfiguration mAppBarConfiguration;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setupAppbar();
         checkPermission();
         eventDetailPlayingSong();
+        activityMainBinding.setLifecycleOwner(this);
     }
 
     private boolean hasStoragePermission() {
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBottomNavigation() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
+        bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setItemIconTintList(null);
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
     }
@@ -104,7 +107,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void eventDetailPlayingSong(){
         findViewById(R.id.containerControlBottom).setOnClickListener(v->{
-            Navigation.findNavController(this,R.id.nav_host_fragment_content_main).navigate(R.id.action_global_fragmentNowPlaying2);
+//            Navigation.findNavController(this,R.id.nav_host_fragment_content_main).navigate(R.id.action_global_fragmentNowPlaying2);
+            MenuItem menuItem = bottomNavigationView.getMenu().findItem(R.id.fragmentNowPlaying2);
+            NavigationUI.onNavDestinationSelected(menuItem,navController);
             v.setVisibility(View.GONE);
         });
 

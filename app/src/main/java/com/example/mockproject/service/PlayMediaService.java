@@ -31,7 +31,7 @@ public class PlayMediaService extends Service {
     public static final String NOTIFICATION_CHANNEL_ID = "notification_channel";
     private static final String TAG = "PlayMediaService";
     private List<SongModel> songModelList = new ArrayList<>();
-    private int currentIndex = -1;
+    private int currentIndex = 0;
     private SongModel songCurrent;
     private Boolean isPlaying=false;
     private Boolean isShuffle=false;
@@ -134,6 +134,7 @@ public class PlayMediaService extends Service {
             mediaPlayer.pause();
             initNotification(R.drawable.ic_play);
             isPlaying=false;
+
         }
         else{
             if (mediaPlayer==null) mediaPlayer = MediaPlayer.create(this, Uri.parse(songCurrent.getUriSong()));
@@ -147,6 +148,7 @@ public class PlayMediaService extends Service {
             isPlaying=true;
             initNotification(R.drawable.ic_pause);
         }
+        songsRepo.setPlaying(isPlaying);
     }
 
     private void finishService() {

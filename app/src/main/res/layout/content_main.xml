@@ -4,6 +4,7 @@
         <variable
             name="viewModel"
             type="com.example.mockproject.viewmodel.MainViewModel" />
+        <import type="com.example.mockproject.R"/>
     </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -27,9 +28,9 @@
             android:id="@+id/containerControlBottom"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:visibility="gone"
             android:layout_above="@id/bottomNav"
-            android:background="#000">
+            android:background="#000"
+            android:visibility="visible">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgSongPlayedBottom"
@@ -48,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@id/guideline"
                 android:layout_toEndOf="@id/imgSongPlayedBottom"
-                android:text="La boi vi co em "
+                android:text="12333333333333333"
+
                 android:textStyle="bold" />
 
             <View
@@ -87,7 +89,7 @@
                 android:onClick="@{(view)->viewModel.eventPause()}"
                 android:scaleX="0.7"
                 android:scaleY="0.7"
-                android:src="@drawable/ic_play_song" />
+                android:src="@drawable/ic_play" />
 
             <ImageView
                 android:id="@+id/btnPreviousPlayedBottom"

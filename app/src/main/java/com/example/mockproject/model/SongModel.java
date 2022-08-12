@@ -1,6 +1,7 @@
 package com.example.mockproject.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class SongModel implements Serializable {
     private long idSong;
@@ -134,4 +135,5 @@ public class SongModel implements Serializable {
                 ", genreId='" + genreId + '\'' +
                 '}';
     }
+
 }
