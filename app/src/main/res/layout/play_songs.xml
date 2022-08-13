@@ -41,8 +41,10 @@
             android:layout_above="@id/txtNameSongPlaySong"
             android:layout_marginBottom="20dp"
             android:layout_toStartOf="@id/txtBreakTime"
-            android:text="3: 15"
+            app:setDurationText="@{viewModel.currentDurationLiveData}"
             android:textColor="@color/sub_color" />
+
+<!--        android:text="@{viewModel.currentDurationLiveData}"-->
 
         <TextView
             android:id="@+id/txtDurationTime"
@@ -112,16 +114,27 @@
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_eq_display" />
 
-        <View
+<!--        <View-->
+<!--            android:id="@+id/breakLine"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_below="@id/imgEQ"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:layout_marginBottom="24dp"-->
+<!--            android:background="#14FFFFFF" />-->
+
+        <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/breakLine"
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
             android:layout_below="@id/imgEQ"
             android:layout_marginStart="20dp"
+
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="24dp"
-            android:background="#14FFFFFF" />
+            android:layout_marginBottom="20dp" />
 
         <ImageView
             android:id="@+id/btnPlaySong"
@@ -129,11 +142,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/breakLine"
             android:layout_centerHorizontal="true"
-            android:onClick="@{(view)->viewModel.eventPause()}"
             android:layout_marginBottom="40dp"
-            android:scaleX="1.2"
-            android:scaleY="1.2"
-            android:src="@drawable/ic_play_song" />
+            tools:src="@drawable/ic_pause"
+            android:onClick="@{(view)->viewModel.eventPause()}"
+            android:src="@{viewModel.isPlayingSong ? @drawable/ic_pause : @drawable/ic_play}"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+             />
 
         <ImageView
             android:id="@+id/btnPreviousSong"
@@ -142,9 +157,9 @@
             android:layout_below="@id/breakLine"
             android:layout_alignTop="@id/btnPlaySong"
             android:layout_alignBottom="@id/btnPlaySong"
-            android:onClick="@{(view)->viewModel.eventPreviousSong()}"
             android:layout_marginEnd="40dp"
             android:layout_toStartOf="@id/btnPlaySong"
+            android:onClick="@{(view)->viewModel.eventPreviousSong()}"
             android:src="@drawable/ic_previous_song" />
 
         <ImageView

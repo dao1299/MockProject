@@ -48,10 +48,12 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         activityMainBinding.setViewModel(mainViewModel);
+        activityMainBinding.setLifecycleOwner(this);
+
         setupBottomNavigation();
         setupAppbar();
         eventDetailPlayingSong();
-        activityMainBinding.setLifecycleOwner(this);
+
 
 
     }
@@ -94,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
 
     }
 

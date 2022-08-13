@@ -1,31 +1,36 @@
 package com.example.mockproject.view.main_activity.fragmentelement.nowplaying;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mockproject.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.mockproject.app.MyApplication;
 import com.example.mockproject.databinding.PlaySongsBinding;
-import com.example.mockproject.model.SongModel;
 import com.example.mockproject.repository.SongsRepo;
+import com.example.mockproject.service.PlayMediaService;
+import com.example.mockproject.service.SingletonMedia;
 import com.example.mockproject.viewmodel.MainViewModel;
 
 public class FragmentNowPlaying extends Fragment {
 
     private final String TAG = "FragmentNowPlaying";
+
     PlaySongsBinding playSongsBinding;
+
+
+
+    Intent intent;
 
     public static FragmentNowPlaying newInstance() {
         return new FragmentNowPlaying();
@@ -44,9 +49,19 @@ public class FragmentNowPlaying extends Fragment {
         MainViewModel mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         playSongsBinding.setViewModel(mViewModel);
         playSongsBinding.setLifecycleOwner(this);
+
         mViewModel.getSongModelLiveData().observe(getViewLifecycleOwner(), songModel -> {
-            Log.i(TAG, "onViewCreated: "+songModel);
+            playSongsBinding.breakLine.setMax((int) songModel.getDurationSong());
+            Log.i(TAG, "onViewCreated: "+playSongsBinding.breakLine.getMax());
         });
+
+        mViewModel.getCurrentDurationLiveData().observe(getViewLifecycleOwner(), value->{
+//
+            Log.i(TAG, "onViewCreated: "+value);
+            if (value!=null) playSongsBinding.breakLine.setProgress(Math.toIntExact(value));
+        });
+
     }
+
 
 }

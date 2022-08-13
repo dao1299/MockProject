@@ -1,5 +1,7 @@
 package com.example.mockproject.repository;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mockproject.model.SongModel;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SongsRepo {
+    private static final String TAG = "SongsRepo";
     List<SongModel> songModelList;
     List<SongModel> allSong;
     int kindOfListSongs = -1;
@@ -17,8 +20,10 @@ public class SongsRepo {
     boolean isPlaying = false;
     boolean stateMedia = false;
     private MutableLiveData<SongModel> songModelMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<Long> currentDuration = new MutableLiveData<>();
+    private MutableLiveData<Boolean> playPauseMutable = new MutableLiveData<>();
 
-
+//    private int currentDuration;
 
 
     private static volatile SongsRepo instance = null;
@@ -110,5 +115,21 @@ public class SongsRepo {
 
     public void setSongModelMutableLiveData(MutableLiveData<SongModel> songModelMutableLiveData) {
         this.songModelMutableLiveData = songModelMutableLiveData;
+    }
+
+    public MutableLiveData<Long> getCurrentDuration() {
+        return currentDuration;
+    }
+
+    public void setCurrentDuration(MutableLiveData<Long> currentDuration) {
+        this.currentDuration = currentDuration;
+    }
+
+    public MutableLiveData<Boolean> getPlayPauseMutable() {
+        return playPauseMutable;
+    }
+
+    public void setPlayPauseMutable(MutableLiveData<Boolean> playPauseMutable) {
+        this.playPauseMutable = playPauseMutable;
     }
 }

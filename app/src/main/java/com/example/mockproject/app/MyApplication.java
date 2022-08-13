@@ -11,6 +11,7 @@ public class MyApplication extends Application {
     public static final String NEXT_SONG = "NEXT_SONG";
     public static final String PLAY_PAUSE_SONG = "PLAY_PAUSE_SONG";
     public static final String FINISH_SERVICE = "FINISH_SERVICE";
+    public static final String UPDATE_CURRENT_DURATION = "UPDATE_CURRENT_DURATION";
 
     @Override
     public void onCreate() {

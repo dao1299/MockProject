@@ -3,6 +3,8 @@ package com.example.mockproject.viewmodel;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -21,21 +23,26 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
     private static final String TAG = "MainViewModel";
-    public SongModel songModel;
-    public Boolean isPlaying;
-    Intent serviceIntent;
     private final SongsRepo songsRepo = SongsRepo.getInstance();
     private final MutableLiveData<Boolean> isPlayingLive = new MutableLiveData<>(songsRepo.isPlaying());
     public final LiveData<Boolean> isPlayingSong = isPlayingLive;
-
-
+    public SongModel songModel;
+    public Boolean isPlaying;
+    Intent serviceIntent;
     MutableLiveData<SongModel> songModelMutableLiveData = new MutableLiveData<>();
     LiveData<SongModel> songModelLiveData = songModelMutableLiveData;
+    HandlerThread handlerThread;
+    Handler handler;
+
+    MutableLiveData<Long> currentDurationMutableLiveData = new MutableLiveData<>(0L);
+    LiveData<Long> currentDurationLiveData = currentDurationMutableLiveData;
+
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         serviceIntent = new Intent(application.getApplicationContext(), PlayMediaService.class);
         changeData();
+        setupHandler();
     }
 
     public void eventPause() {
@@ -58,22 +65,40 @@ public class MainViewModel extends AndroidViewModel {
         getApplication().startService(serviceIntent);
     }
 
-    public List<SongModel> getListSongs(Activity context){
+    public List<SongModel> getListSongs(Activity context) {
         List<SongModel> songModelList = new SongsUtils().getListSongs(context);
         SongsRepo.getInstance().setAllSong(songModelList);
         return songModelList;
     }
 
-    public void changeData(){
+    public void changeData() {
         SongsRepo songsRepo = SongsRepo.getInstance();
         Log.i(TAG, "changeData: ");
         songsRepo.getSongModelMutableLiveData().observeForever(new Observer<SongModel>() {
             @Override
             public void onChanged(SongModel songModel) {
                 songModelMutableLiveData.setValue(songModel);
-                Log.i(TAG, "onChanged: "+songModelMutableLiveData.getValue().getNameSong()+"  "+songModelLiveData.getValue().getNameSong());
+                Log.i(TAG, "onChanged: " + songModelMutableLiveData.getValue().getNameSong() + "  " + songModelLiveData.getValue().getNameSong());
+                updateDuration();
             }
         });
+        songsRepo.getPlayPauseMutable().observeForever(new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                isPlayingLive.postValue(aBoolean);
+            }
+        });
+
+
+        songsRepo.getCurrentDuration().observeForever(new Observer<Long>() {
+            @Override
+            public void onChanged(Long value) {
+//                Log.i(TAG, "Time: "+integer);
+//                Log.i(TAG, "================================");
+                currentDurationMutableLiveData.setValue(value);
+            }
+        });
+
     }
 
     public LiveData<SongModel> getSongModelLiveData() {
@@ -82,5 +107,33 @@ public class MainViewModel extends AndroidViewModel {
 
     public void setSongModelLiveData(LiveData<SongModel> songModelLiveData) {
         this.songModelLiveData = songModelLiveData;
+    }
+
+    private void setupHandler(){
+        handlerThread = new HandlerThread("Update duration");
+        handlerThread.start();
+        handler = new Handler(handlerThread.getLooper());
+
+    }
+
+    private void updateDuration(){
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                serviceIntent.setAction(MyApplication.UPDATE_CURRENT_DURATION);
+                currentDurationMutableLiveData.postValue(SongsRepo.getInstance().getCurrentDuration().getValue());
+                Log.i(TAG, "run: "+currentDurationMutableLiveData.getValue());
+                updateDuration();
+                getApplication().startService(serviceIntent);
+            }
+        },1000);
+    }
+
+    public LiveData<Long> getCurrentDurationLiveData() {
+        return currentDurationLiveData;
+    }
+
+    public void updateSeekbar(){
+
     }
 }

@@ -29,8 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_above="@id/bottomNav"
-            android:background="#000"
-            android:visibility="gone">
+            android:background="#000">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgSongPlayedBottom"
@@ -49,8 +48,9 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@id/guideline"
                 android:layout_toEndOf="@id/imgSongPlayedBottom"
-                android:text="@{viewModel.songModel.nameSong}"
-                android:textStyle="bold" />
+                android:text="@{viewModel.songModelLiveData.nameSong}"
+                android:textStyle="bold"
+                tools:text="123" />
 
             <View
                 android:id="@+id/guideline"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/guideline"
                 android:layout_toEndOf="@id/imgSongPlayedBottom"
-                android:text="@{viewModel.songModel.artistSong}" />
+                android:text="@{viewModel.songModelLiveData.artistSong}" />
 
             <ImageView
                 android:id="@+id/btnNextPlayedBottom"
@@ -86,7 +86,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_toStartOf="@id/btnNextPlayedBottom"
                 android:onClick="@{(view)->viewModel.eventPause()}"
-                android:src="@drawable/ic_play" />
+                android:src="@{viewModel.isPlayingSong ? @drawable/ic_pause : @drawable/ic_play}" />
 
             <ImageView
                 android:id="@+id/btnPreviousPlayedBottom"

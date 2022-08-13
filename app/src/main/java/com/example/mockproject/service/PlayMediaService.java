@@ -5,13 +5,10 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.IBinder;
-import android.os.Parcelable;
 import android.util.Log;
-import android.widget.RemoteViews;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -30,19 +27,15 @@ public class PlayMediaService extends Service {
 
     public static final String NOTIFICATION_CHANNEL_ID = "notification_channel";
     private static final String TAG = "PlayMediaService";
+    SongsRepo songsRepo = SongsRepo.getInstance();
+    SingletonMedia singletonMedia = SingletonMedia.getInstance();
+    MediaPlayer mediaPlayer = singletonMedia.mediaPlayer;
     private List<SongModel> songModelList = new ArrayList<>();
     private int currentIndex = 0;
     private SongModel songCurrent;
-    private Boolean isPlaying=false;
-    private Boolean isShuffle=false;
-    private Boolean isRepeat=false;
-
-
-    SongsRepo songsRepo = SongsRepo.getInstance();
-
-    SingletonMedia singletonMedia = SingletonMedia.getInstance();
-
-    MediaPlayer mediaPlayer = singletonMedia.mediaPlayer;
+    private Boolean isPlaying = false;
+    private Boolean isShuffle = false;
+    private Boolean isRepeat = false;
 
     @Nullable
     @Override
@@ -61,10 +54,10 @@ public class PlayMediaService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        isShuffle=songsRepo.isShuffle();
-        isRepeat=songsRepo.isRepeat();
+        isShuffle = songsRepo.isShuffle();
+        isRepeat = songsRepo.isRepeat();
         songModelList = songsRepo.getSongModelList();
-        if (currentIndex != songsRepo.getCurrentSongIndex()){
+        if (currentIndex != songsRepo.getCurrentSongIndex()) {
             Log.i(TAG, "onStartCommand: changeSong");
             isPlaying = false;
             mediaPlayer.release();
@@ -72,8 +65,8 @@ public class PlayMediaService extends Service {
         }
         currentIndex = songsRepo.getCurrentSongIndex();
         songCurrent = songModelList.get(currentIndex);
-        Log.i(TAG, "onStartCommand: currnet: "+songCurrent);
-        if (intent!=null && intent.getAction()!=null)
+        Log.i(TAG, "onStartCommand: currnet: " + songCurrent);
+        if (intent != null && intent.getAction() != null)
             handleAction(intent.getAction());
         else
             playPauseSong();
@@ -83,17 +76,17 @@ public class PlayMediaService extends Service {
     private void initNotification(int iconPlayPause) {
         Bitmap bitmap = BindingExtension.getBitmap(songCurrent.getUriSong());
 
-        Intent playPauseButtonIntent = new Intent(this,Broadcast.class).setAction(MyApplication.PLAY_PAUSE_SONG);
-        PendingIntent playPausePending =PendingIntent.getBroadcast(this,0,playPauseButtonIntent,PendingIntent.FLAG_IMMUTABLE);
+        Intent playPauseButtonIntent = new Intent(this, Broadcast.class).setAction(MyApplication.PLAY_PAUSE_SONG);
+        PendingIntent playPausePending = PendingIntent.getBroadcast(this, 0, playPauseButtonIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        Intent previousButtonIntent = new Intent(this,Broadcast.class).setAction(MyApplication.PREVIOUS_SONG);
-        PendingIntent previousPending = PendingIntent.getBroadcast(this,0,previousButtonIntent,PendingIntent.FLAG_IMMUTABLE);
+        Intent previousButtonIntent = new Intent(this, Broadcast.class).setAction(MyApplication.PREVIOUS_SONG);
+        PendingIntent previousPending = PendingIntent.getBroadcast(this, 0, previousButtonIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        Intent nextButtonIntent = new Intent(this,Broadcast.class).setAction(MyApplication.NEXT_SONG);
-        PendingIntent nextPending = PendingIntent.getBroadcast(this,0,nextButtonIntent,PendingIntent.FLAG_IMMUTABLE);
+        Intent nextButtonIntent = new Intent(this, Broadcast.class).setAction(MyApplication.NEXT_SONG);
+        PendingIntent nextPending = PendingIntent.getBroadcast(this, 0, nextButtonIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        Intent finishButtonIntent = new Intent(this,Broadcast.class).setAction(MyApplication.FINISH_SERVICE);
-        PendingIntent finishPending  = PendingIntent.getBroadcast(this,0,finishButtonIntent, PendingIntent.FLAG_IMMUTABLE);
+        Intent finishButtonIntent = new Intent(this, Broadcast.class).setAction(MyApplication.FINISH_SERVICE);
+        PendingIntent finishPending = PendingIntent.getBroadcast(this, 0, finishButtonIntent, PendingIntent.FLAG_IMMUTABLE);
 
         Notification notification = new NotificationCompat.Builder(getApplication(), NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_song_checked)
@@ -101,10 +94,10 @@ public class PlayMediaService extends Service {
                 .setContentText(songCurrent.getArtistSong())
                 .setLargeIcon(bitmap)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
-                .addAction(R.drawable.ic_previous_song,"previous",previousPending)
-                .addAction(iconPlayPause,"play_pause",playPausePending)
-                .addAction(R.drawable.ic_next_song,"next",nextPending)
-                .addAction(R.drawable.ic_close_button,"finish",finishPending)
+                .addAction(R.drawable.ic_previous_song, "previous", previousPending)
+                .addAction(iconPlayPause, "play_pause", playPausePending)
+                .addAction(R.drawable.ic_next_song, "next", nextPending)
+                .addAction(R.drawable.ic_close_button, "finish", finishPending)
                 .setSound(null)
                 .build();
 
@@ -125,6 +118,9 @@ public class PlayMediaService extends Service {
             case MyApplication.FINISH_SERVICE:
                 finishService();
                 break;
+            case MyApplication.UPDATE_CURRENT_DURATION:
+                updateCurrent();
+                break;
         }
     }
 
@@ -133,11 +129,12 @@ public class PlayMediaService extends Service {
         if (isPlaying) {
             mediaPlayer.pause();
             initNotification(R.drawable.ic_play);
-            isPlaying=false;
+            isPlaying = false;
 
-        }
-        else{
-            if (mediaPlayer==null) mediaPlayer = MediaPlayer.create(this, Uri.parse(songCurrent.getUriSong()));
+
+        } else {
+            if (mediaPlayer == null)
+                mediaPlayer = MediaPlayer.create(this, Uri.parse(songCurrent.getUriSong()));
             mediaPlayer.start();
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -145,28 +142,28 @@ public class PlayMediaService extends Service {
                     nextSong();
                 }
             });
-            isPlaying=true;
+            isPlaying = true;
             initNotification(R.drawable.ic_pause);
         }
-        songsRepo.getSongModelMutableLiveData().setValue(songCurrent);
-        songsRepo.setPlaying(isPlaying);
+        songsRepo.getSongModelMutableLiveData().postValue(songCurrent);
+        songsRepo.getPlayPauseMutable().postValue(isPlaying);
     }
 
     private void finishService() {
         Log.i(TAG, "finishService: ");
         stopSelf();
         mediaPlayer.release();
-        mediaPlayer=null;
+        mediaPlayer = null;
     }
 
     private void nextSong() {
         Log.i(TAG, "nextSong: ");
 //        previousIndex = currentIndex;
-        if (isShuffle){
+        if (isShuffle) {
             Random random = new Random();
             currentIndex = random.nextInt(songModelList.size());
-        }else{
-            if (currentIndex==songModelList.size()-1) currentIndex=0;
+        } else {
+            if (currentIndex == songModelList.size() - 1) currentIndex = 0;
             else currentIndex++;
         }
 
@@ -180,8 +177,8 @@ public class PlayMediaService extends Service {
 
     private void previousSong() {
         Log.i(TAG, "previousSong: ");
-        if (currentIndex==0)
-            currentIndex=songModelList.size()-1;
+        if (currentIndex == 0)
+            currentIndex = songModelList.size() - 1;
         else
             currentIndex--;
         songsRepo.setCurrentSongIndex(currentIndex);
@@ -192,5 +189,10 @@ public class PlayMediaService extends Service {
         playPauseSong();
     }
 
+    private void updateCurrent() {
+        Log.i(TAG, "updateCurrent: "+mediaPlayer.getCurrentPosition());
+        songsRepo.getCurrentDuration().postValue(Long.valueOf(mediaPlayer.getCurrentPosition()));
+        Log.i(TAG, "=========================");
+    }
 
 }
