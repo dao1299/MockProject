@@ -7,6 +7,7 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.IdRes;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -14,6 +15,8 @@ import androidx.databinding.BindingAdapter;
 
 import com.example.mockproject.R;
 import com.google.android.material.imageview.ShapeableImageView;
+
+import java.util.concurrent.TimeUnit;
 
 public class BindingExtension {
     @BindingAdapter({"android:src"})
@@ -57,4 +60,11 @@ public class BindingExtension {
 //    public static void setImageResource(ImageView img,int drawable) {
 //        img.setImageDrawable(AppCompatResources.getDrawable(img.getContext(),drawable));
 //    }
+
+    @BindingAdapter({"app:setDurationText"})
+    public static void setDurationText(TextView textView,long duration){
+        textView.setText(String.format("%02d:%02d",
+                TimeUnit.MILLISECONDS.toMinutes(duration),
+                TimeUnit.MILLISECONDS.toSeconds(duration)- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration))));
+    }
 }

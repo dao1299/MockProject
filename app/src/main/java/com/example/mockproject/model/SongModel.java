@@ -88,8 +88,8 @@ public class SongModel implements Serializable {
         this.albumId = albumId;
     }
 
-    public String getDurationSong() {
-        return durationSong;
+    public long getDurationSong() {
+        return Long.parseLong(durationSong);
     }
 
     public void setDurationSong(String durationSong) {

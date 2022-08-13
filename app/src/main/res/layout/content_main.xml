@@ -30,7 +30,7 @@
             android:layout_height="60dp"
             android:layout_above="@id/bottomNav"
             android:background="#000"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgSongPlayedBottom"
@@ -49,8 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@id/guideline"
                 android:layout_toEndOf="@id/imgSongPlayedBottom"
-                android:text="12333333333333333"
-
+                android:text="@{viewModel.songModel.nameSong}"
                 android:textStyle="bold" />
 
             <View
@@ -65,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/guideline"
                 android:layout_toEndOf="@id/imgSongPlayedBottom"
-                android:text="Selena Gomez" />
+                android:text="@{viewModel.songModel.artistSong}" />
 
             <ImageView
                 android:id="@+id/btnNextPlayedBottom"
@@ -87,8 +86,6 @@
                 android:layout_marginEnd="10dp"
                 android:layout_toStartOf="@id/btnNextPlayedBottom"
                 android:onClick="@{(view)->viewModel.eventPause()}"
-                android:scaleX="0.7"
-                android:scaleY="0.7"
                 android:src="@drawable/ic_play" />
 
             <ImageView

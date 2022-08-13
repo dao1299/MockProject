@@ -148,6 +148,7 @@ public class PlayMediaService extends Service {
             isPlaying=true;
             initNotification(R.drawable.ic_pause);
         }
+        songsRepo.getSongModelMutableLiveData().setValue(songCurrent);
         songsRepo.setPlaying(isPlaying);
     }
 

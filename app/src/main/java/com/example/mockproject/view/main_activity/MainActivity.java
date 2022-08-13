@@ -3,6 +3,7 @@ package com.example.mockproject.view.main_activity;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,6 +26,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.mockproject.R;
 import com.example.mockproject.databinding.ActivityMainBinding;
 import com.example.mockproject.databinding.ContentMainBinding;
+import com.example.mockproject.model.SongModel;
+import com.example.mockproject.repository.SongsRepo;
 import com.example.mockproject.viewmodel.MainViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -40,14 +44,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkPermission();
         activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         activityMainBinding.setViewModel(mainViewModel);
         setupBottomNavigation();
         setupAppbar();
-        checkPermission();
         eventDetailPlayingSong();
         activityMainBinding.setLifecycleOwner(this);
+
+
     }
 
     private boolean hasStoragePermission() {
@@ -112,6 +118,9 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.onNavDestinationSelected(menuItem,navController);
             v.setVisibility(View.GONE);
         });
+    }
+
+    public void changeScreenPlayingSong(){
 
     }
 

@@ -1,5 +1,6 @@
 package com.example.mockproject.viewmodel;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.util.Log;
@@ -8,77 +9,78 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
-import com.example.mockproject.R;
 import com.example.mockproject.app.MyApplication;
+import com.example.mockproject.model.SongModel;
 import com.example.mockproject.repository.SongsRepo;
 import com.example.mockproject.service.PlayMediaService;
+import com.example.mockproject.utils.SongsUtils;
+
+import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
     private static final String TAG = "MainViewModel";
-    private int mPlayDrawable;
-
-
-    SongsRepo songsRepo =  SongsRepo.getInstance();
-
-    public MutableLiveData<Boolean> isPlayingLive = new MutableLiveData<>(songsRepo.isPlaying());
-    public LiveData<Boolean> isPlayingSong = isPlayingLive;
+    public SongModel songModel;
     public Boolean isPlaying;
     Intent serviceIntent;
+    private final SongsRepo songsRepo = SongsRepo.getInstance();
+    private final MutableLiveData<Boolean> isPlayingLive = new MutableLiveData<>(songsRepo.isPlaying());
+    public final LiveData<Boolean> isPlayingSong = isPlayingLive;
 
-    public Boolean getPlaying() {
-        return isPlaying;
-    }
 
-    public void setPlaying(Boolean playing) {
-        isPlaying = playing;
-    }
-
-    public int isPlayingDrawable(){
-        return mPlayDrawable;
-    }
+    MutableLiveData<SongModel> songModelMutableLiveData = new MutableLiveData<>();
+    LiveData<SongModel> songModelLiveData = songModelMutableLiveData;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         serviceIntent = new Intent(application.getApplicationContext(), PlayMediaService.class);
-        isPlaying = true;
-        mPlayDrawable = R.drawable.ic_pause;
+        changeData();
     }
 
-    public void eventPause(){
-//        Log.i(TAG, "eventPause: "+songsRepo.isPlaying());
-//        isPlaying.postValue(songsRepo.isPlaying());
+    public void eventPause() {
         isPlaying = songsRepo.isPlaying();
         isPlayingLive.postValue(isPlaying);
-        Log.i(TAG, "eventPause: "+songsRepo.isPlaying());
+        Log.i(TAG, "eventPause: " + songsRepo.isPlaying());
         serviceIntent.setAction(MyApplication.PLAY_PAUSE_SONG);
         getApplication().startService(serviceIntent);
-        mPlayDrawable = R.drawable.ic_play;
     }
 
-    public void eventNextSong(){
+    public void eventNextSong() {
         Log.i(TAG, "eventNextSong: ");
         serviceIntent.setAction(MyApplication.NEXT_SONG);
         getApplication().startService(serviceIntent);
-        mPlayDrawable = R.drawable.ic_pause;
     }
 
-    public int getPlayDrawable() {
-        return mPlayDrawable;
-    }
-
-    public void setPlayDrawable(int mPlayDrawable) {
-        this.mPlayDrawable = mPlayDrawable;
-    }
-
-    public void eventPreviousSong(){
+    public void eventPreviousSong() {
         Log.i(TAG, "eventPreviousSong: ");
         serviceIntent.setAction(MyApplication.PREVIOUS_SONG);
         getApplication().startService(serviceIntent);
-        mPlayDrawable = R.drawable.ic_pause;
     }
 
-    public void eventPlayingSong(){
+    public List<SongModel> getListSongs(Activity context){
+        List<SongModel> songModelList = new SongsUtils().getListSongs(context);
+        SongsRepo.getInstance().setAllSong(songModelList);
+        return songModelList;
+    }
 
+    public void changeData(){
+        SongsRepo songsRepo = SongsRepo.getInstance();
+        Log.i(TAG, "changeData: ");
+        songsRepo.getSongModelMutableLiveData().observeForever(new Observer<SongModel>() {
+            @Override
+            public void onChanged(SongModel songModel) {
+                songModelMutableLiveData.setValue(songModel);
+                Log.i(TAG, "onChanged: "+songModelMutableLiveData.getValue().getNameSong()+"  "+songModelLiveData.getValue().getNameSong());
+            }
+        });
+    }
+
+    public LiveData<SongModel> getSongModelLiveData() {
+        return songModelLiveData;
+    }
+
+    public void setSongModelLiveData(LiveData<SongModel> songModelLiveData) {
+        this.songModelLiveData = songModelLiveData;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.mockproject.repository;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.mockproject.model.SongModel;
 
 import java.util.ArrayList;
@@ -7,15 +9,22 @@ import java.util.List;
 
 public class SongsRepo {
     List<SongModel> songModelList;
+    List<SongModel> allSong;
     int kindOfListSongs = -1;
     int currentSongIndex = 0;
     boolean isRepeat = false;
     boolean isShuffle = false;
     boolean isPlaying = false;
+    boolean stateMedia = false;
+    private MutableLiveData<SongModel> songModelMutableLiveData = new MutableLiveData<>();
+
+
+
 
     private static volatile SongsRepo instance = null;
 
     private SongsRepo(){
+        allSong = new ArrayList<>();
         songModelList = new ArrayList<>();
     }
     public static SongsRepo getInstance(){
@@ -25,6 +34,14 @@ public class SongsRepo {
             }
         }
         return instance;
+    }
+
+    public List<SongModel> getAllSong() {
+        return allSong;
+    }
+
+    public void setAllSong(List<SongModel> allSong) {
+        this.allSong = allSong;
     }
 
     public List<SongModel> getSongModelList() {
@@ -77,5 +94,21 @@ public class SongsRepo {
 
     public void setPlaying(boolean playing) {
         isPlaying = playing;
+    }
+
+    public boolean isStateMedia() {
+        return stateMedia;
+    }
+
+    public void setStateMedia(boolean stateMedia) {
+        this.stateMedia = stateMedia;
+    }
+
+    public MutableLiveData<SongModel> getSongModelMutableLiveData() {
+        return songModelMutableLiveData;
+    }
+
+    public void setSongModelMutableLiveData(MutableLiveData<SongModel> songModelMutableLiveData) {
+        this.songModelMutableLiveData = songModelMutableLiveData;
     }
 }
