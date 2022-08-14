@@ -1,10 +1,6 @@
 package com.example.mockproject.view.main_activity.fragmentelement.nowplaying;
 
-import android.app.Application;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,20 +11,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.mockproject.app.MyApplication;
 import com.example.mockproject.databinding.PlaySongsBinding;
-import com.example.mockproject.repository.SongsRepo;
-import com.example.mockproject.service.PlayMediaService;
-import com.example.mockproject.service.SingletonMedia;
 import com.example.mockproject.viewmodel.MainViewModel;
+
 
 public class FragmentNowPlaying extends Fragment {
 
     private final String TAG = "FragmentNowPlaying";
 
-    PlaySongsBinding playSongsBinding;
     MainViewModel mViewModel;
-
+    PlaySongsBinding playSongsBinding;
 
     public static FragmentNowPlaying newInstance() {
         return new FragmentNowPlaying();
@@ -55,15 +47,15 @@ public class FragmentNowPlaying extends Fragment {
 
 //        playSongsBinding.setLifecycleOwner(getViewLifecycleOwner());
 
-        mViewModel.getSongModelLiveData().observe(getViewLifecycleOwner(), songModel -> {
-            playSongsBinding.breakLine.setMax((int) songModel.getDurationSong());
-        });
-
-
-
-        mViewModel.getCurrentDurationLiveData().observe(getViewLifecycleOwner(), value->{
-            if (value!=null) playSongsBinding.breakLine.setProgress(Math.toIntExact(value));
-        });
+//        mViewModel.getSongModelLiveData().observe(getViewLifecycleOwner(), songModel -> {
+//            playSongsBinding.breakLine.setMax((int) songModel.getDurationSong());
+//        });
+//
+//
+//
+//        mViewModel.getCurrentDurationLiveData().observe(getViewLifecycleOwner(), value->{
+//            if (value!=null) playSongsBinding.breakLine.setProgress(Math.toIntExact(value));
+//        });
 
     }
 

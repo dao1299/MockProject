@@ -8,6 +8,7 @@
             type="com.example.mockproject.viewmodel.MainViewModel" />
     </data>
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_height="match_parent"
@@ -114,27 +115,27 @@
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_eq_display" />
 
-<!--        <View-->
-<!--            android:id="@+id/breakLine"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:layout_below="@id/imgEQ"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:layout_marginBottom="24dp"-->
-<!--            android:background="#14FFFFFF" />-->
-
-        <androidx.appcompat.widget.AppCompatSeekBar
+        <View
             android:id="@+id/breakLine"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
             android:layout_below="@id/imgEQ"
             android:layout_marginStart="20dp"
-
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="24dp"
+            android:background="#14FFFFFF" />
+
+<!--        <androidx.appcompat.widget.AppCompatSeekBar-->
+<!--            android:id="@+id/breakLine"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="5dp"-->
+<!--            android:layout_below="@id/imgEQ"-->
+<!--            android:layout_marginStart="20dp"-->
+
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:layout_marginBottom="20dp" />-->
 
         <ImageView
             android:id="@+id/btnPlaySong"

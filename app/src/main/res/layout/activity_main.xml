@@ -23,6 +23,7 @@
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
+            android:id="@+id/containerCoordinatorLayout"
             android:layout_height="match_parent">
 
             <com.google.android.material.appbar.AppBarLayout
@@ -41,6 +42,7 @@
 
             <include layout="@layout/content_main"
                 app:viewModel="@{viewModel}"
+                android:id="@+id/containerMain"
                 />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

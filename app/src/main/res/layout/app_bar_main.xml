@@ -14,5 +14,6 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/background_color" />
     </com.google.android.material.appbar.AppBarLayout>
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_main"
+        android:id="@+id/layout_bottom_control"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

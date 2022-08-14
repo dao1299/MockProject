@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -40,20 +41,23 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding activityMainBinding;
     private AppBarConfiguration mAppBarConfiguration;
     BottomNavigationView bottomNavigationView;
+    MainViewModel mainViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkPermission();
-        activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
-        MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+//        activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(activityMainBinding.getRoot());
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         activityMainBinding.setViewModel(mainViewModel);
         activityMainBinding.setLifecycleOwner(this);
 
         setupBottomNavigation();
         setupAppbar();
         eventDetailPlayingSong();
-
+        initSeekbar();
 
 
     }
@@ -125,6 +129,18 @@ public class MainActivity extends AppCompatActivity {
         MenuItem menuItem = bottomNavigationView.getMenu().findItem(R.id.fragmentNowPlaying2);
         NavigationUI.onNavDestinationSelected(menuItem,navController);
 //        v.setVisibility(View.GONE);
+    }
+
+    public void initSeekbar(){
+        mainViewModel.getSongModelLiveData().observe(activityMainBinding.getLifecycleOwner(), songModel -> {
+            activityMainBinding.containerMain.seekbarBottomControl.setMax((int) songModel.getDurationSong());
+        });
+
+
+
+        mainViewModel.getCurrentDurationLiveData().observe(activityMainBinding.getLifecycleOwner(), value->{
+            if (value!=null) activityMainBinding.containerMain.seekbarBottomControl.setProgress(Math.toIntExact(value));
+        });
     }
 
     public void updateSeekbar(){

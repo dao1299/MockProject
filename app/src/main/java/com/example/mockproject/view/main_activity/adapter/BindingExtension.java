@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.IdRes;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.databinding.BindingAdapter;
 
 import com.example.mockproject.R;
@@ -24,6 +25,7 @@ public class BindingExtension {
         Bitmap bitmap = getBitmap(uri);
         if (bitmap==null){
             imageSong.setImageResource(R.drawable.ic_song);
+            imageSong.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         }else{
             imageSong.setImageBitmap(bitmap);
         }
@@ -67,4 +69,7 @@ public class BindingExtension {
                 TimeUnit.MILLISECONDS.toMinutes(duration),
                 TimeUnit.MILLISECONDS.toSeconds(duration)- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration))));
     }
+
+//    @BindingAdapter({"app:setMax"})
+//    public static void setMax(AppCompatSeekBar appCompatSeekBar)
 }
