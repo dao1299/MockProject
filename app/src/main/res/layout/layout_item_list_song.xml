@@ -25,7 +25,7 @@
             android:layout_height="72dp"
             android:foreground="@drawable/border_image_circle"
             android:scaleType="centerInside"
-            android:src="@{songModel.uriSong}"
+            app:imageSong="@{songModel.uriSong}"
             app:srcCompat="@drawable/ic_song"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

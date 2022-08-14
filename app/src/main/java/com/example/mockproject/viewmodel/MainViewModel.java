@@ -29,7 +29,7 @@ public class MainViewModel extends AndroidViewModel {
     public SongModel songModel;
     public Boolean isPlaying;
     Intent serviceIntent;
-    MutableLiveData<SongModel> songModelMutableLiveData = new MutableLiveData<>();
+    MutableLiveData<SongModel> songModelMutableLiveData = new MutableLiveData<>(new SongModel(-1,"","","0","","","0","0","",""));
     LiveData<SongModel> songModelLiveData = songModelMutableLiveData;
     HandlerThread handlerThread;
     Handler handler;
@@ -133,6 +133,6 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void updateSeekbar(){
-        
+
     }
 }

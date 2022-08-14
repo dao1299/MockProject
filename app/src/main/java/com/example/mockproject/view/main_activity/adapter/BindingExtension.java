@@ -19,7 +19,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import java.util.concurrent.TimeUnit;
 
 public class BindingExtension {
-    @BindingAdapter({"android:src"})
+    @BindingAdapter({"app:imageSong"})
     public static void setImageSong(ShapeableImageView imageSong,String uri){
         Bitmap bitmap = getBitmap(uri);
         if (bitmap==null){
