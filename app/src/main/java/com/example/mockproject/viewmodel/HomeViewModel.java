@@ -92,15 +92,4 @@ public class HomeViewModel extends AndroidViewModel {
         return artistModels;
     }
 
-    public void eventPause(){
-        Log.i(TAG, "eventPause: ");
-    }
-
-    public void eventNextSong(){
-        Log.i(TAG, "eventNextSong: ");
-    }
-
-    public void eventPreviousSong(){
-        Log.i(TAG, "eventPreviousSong: ");
-    }
 }

@@ -14,14 +14,16 @@
         android:layout_height="match_parent"
         android:background="@color/background_color">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgSample"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/txtBreakTime"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:src="@drawable/ic_now_playing_album_art" />
+            app:shapeAppearanceOverlay="@style/Circular"
+            app:imageSong="@{viewModel.songModelLiveData.uriSong}"
+            tools:src="@drawable/ic_now_playing_album_art" />
 
         <TextView
             android:id="@+id/txtBreakTime"
@@ -186,6 +188,7 @@
             android:orientation="vertical">
 
             <ImageView
+
                 android:layout_width="20dp"
                 android:layout_height="15dp"
                 android:src="@drawable/ic_repeat" />

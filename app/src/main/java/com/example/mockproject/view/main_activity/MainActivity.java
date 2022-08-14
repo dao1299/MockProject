@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -113,9 +114,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        Log.i(TAG, "onSupportNavigateUp: ");
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        if (navController.getCurrentDestination().getId()!=R.id.fragmentNowPlaying2){
+            Log.i(TAG, "onSupportNavigateUp: 111111");
+        }else{
+            activityMainBinding.containerMain.containerControlBottom.setVisibility(View.VISIBLE);
+        }
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        Log.i(TAG, "onContextItemSelected: ");
+        return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Log.i(TAG, "onOptionsItemSelected: ");
+        return super.onOptionsItemSelected(item);
     }
 
     public void eventDetailPlayingSong(){
@@ -137,8 +156,6 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel.getSongModelLiveData().observe(activityMainBinding.getLifecycleOwner(), songModel -> {
             activityMainBinding.containerMain.seekbarBottomControl.setMax((int) songModel.getDurationSong());
         });
-
-
 
         mainViewModel.getCurrentDurationLiveData().observe(activityMainBinding.getLifecycleOwner(), value->{
             if (value!=null) activityMainBinding.containerMain.seekbarBottomControl.setProgress(Math.toIntExact(value));
@@ -167,5 +184,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Log.i(TAG, "onBackPressed: ");
+        super.onBackPressed();
+    }
 }

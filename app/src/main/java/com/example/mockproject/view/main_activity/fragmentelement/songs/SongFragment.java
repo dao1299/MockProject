@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +16,13 @@ import com.example.mockproject.databinding.FragmentSongBinding;
 import com.example.mockproject.model.SongModel;
 import com.example.mockproject.view.main_activity.adapter.ListSongAdapter;
 import com.example.mockproject.view.main_activity.adapter.ViewPagerSongsFragmentAdapter;
+import com.example.mockproject.viewmodel.MainViewModel;
 import com.example.mockproject.viewmodel.SongViewModel;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class SongFragment extends Fragment{
 
-    private SongViewModel mViewModel;
+    private MainViewModel mViewModel;
 
     FragmentSongBinding fragmentSongBinding;
 
@@ -39,6 +41,7 @@ public class SongFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fragmentSongBinding.viewPagerSongs.setAdapter(new ViewPagerSongsFragmentAdapter(this));
+        mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         new TabLayoutMediator(fragmentSongBinding.tabLayoutSongs,fragmentSongBinding.viewPagerSongs,(tab, position) -> {
             switch (position){
                 case 0:
@@ -60,4 +63,9 @@ public class SongFragment extends Fragment{
         }).attach();
     }
 
+    @Override
+    public void onStart() {
+        mViewModel.setVisibilityForBottomControl(true);
+        super.onStart();
+    }
 }

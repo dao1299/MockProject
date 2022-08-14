@@ -57,10 +57,10 @@ public class PlayMediaService extends Service {
         isShuffle = songsRepo.isShuffle();
         isRepeat = songsRepo.isRepeat();
         songModelList = songsRepo.getSongModelList();
-        if (currentIndex != songsRepo.getCurrentSongIndex()) {
+        if (currentIndex != songsRepo.getCurrentSongIndex() ) {
             Log.i(TAG, "onStartCommand: changeSong");
             isPlaying = false;
-            mediaPlayer.release();
+            if (mediaPlayer!=null) mediaPlayer.release();
             mediaPlayer = null;
         }
         currentIndex = songsRepo.getCurrentSongIndex();
@@ -165,6 +165,7 @@ public class PlayMediaService extends Service {
         mediaPlayer.release();
         mediaPlayer = null;
         songsRepo.getStatusOfMediaMutableLive().postValue(false);
+        songsRepo.getSongModelMutableLiveData().postValue(new SongModel(-1,"","","0","","","0","0","",""));
     }
 
     private void nextSong() {
@@ -202,7 +203,8 @@ public class PlayMediaService extends Service {
 
     private void updateCurrent() {
 //        Log.i(TAG, "updateCurrent: "+mediaPlayer.getCurrentPosition());
-        songsRepo.getCurrentDuration().postValue(Long.valueOf(mediaPlayer.getCurrentPosition()));
+        if (mediaPlayer!=null)
+        songsRepo.getCurrentDuration().postValue((long) mediaPlayer.getCurrentPosition());
 //        Log.i(TAG, "=========================");
     }
 

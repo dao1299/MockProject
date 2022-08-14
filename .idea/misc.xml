@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable-v24/border_playlist_rectangle.xml" value="0.2025" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.172" />
+        <entry key="..\:/Android/MockProject/app/src/main/res/drawable/background_progress_fill.xml" value="0.178" />
+        <entry key="..\:/Android/MockProject/app/src/main/res/drawable/background_thumb_seekbar.xml" value="0.178" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/bg_gradient.xml" value="0.227" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/border_image_circle.xml" value="0.1945" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/border_image_rectangle.xml" value="0.196" />
@@ -26,6 +28,8 @@
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/ic_play_song_list.xml" value="0.2275" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/ic_playlist.xml" value="0.2455" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/ic_previous_song.xml" value="0.2275" />
+        <entry key="..\:/Android/MockProject/app/src/main/res/drawable/ic_repeat.xml" value="0.178" />
+        <entry key="..\:/Android/MockProject/app/src/main/res/drawable/ic_repeat_selected.xml" value="0.178" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/ic_search.xml" value="0.2455" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/ic_setting.xml" value="0.172" />
         <entry key="..\:/Android/MockProject/app/src/main/res/drawable/ic_setting_checked.xml" value="0.172" />

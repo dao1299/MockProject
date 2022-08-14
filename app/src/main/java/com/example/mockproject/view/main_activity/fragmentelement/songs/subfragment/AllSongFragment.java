@@ -81,6 +81,6 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
         Log.i(TAG, "onClickItemSong: "+index+" : "+songModel);
         Intent intent = new Intent(requireActivity(),PlayMediaService.class);
         requireActivity().startService(intent);
-        Navigation.findNavController(requireActivity(),R.id.nav_host_fragment_content_main).navigate(R.id.fragmentNowPlaying2);
+//        Navigation.findNavController(requireActivity(),R.id.nav_host_fragment_content_main).navigate(R.id.fragmentNowPlaying2);
     }
 }

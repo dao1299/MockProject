@@ -57,4 +57,10 @@ public class FragmentNowPlaying extends Fragment {
         Log.i(TAG, "onDestroy: ");
         super.onDestroy();
     }
+
+    @Override
+    public void onStart() {
+        mViewModel.setVisibilityForBottomControl(false);
+        super.onStart();
+    }
 }

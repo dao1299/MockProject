@@ -13,11 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mockproject.R;
+import com.example.mockproject.viewmodel.MainViewModel;
 import com.example.mockproject.viewmodel.SettingViewModel;
 
 public class SettingFragment extends Fragment {
 
-    private SettingViewModel mViewModel;
+    private MainViewModel mViewModel;
 
     public static SettingFragment newInstance() {
         return new SettingFragment();
@@ -32,8 +33,13 @@ public class SettingFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(SettingViewModel.class);
+        mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onStart() {
+        mViewModel.setVisibilityForBottomControl(true);
+        super.onStart();
+    }
 }
