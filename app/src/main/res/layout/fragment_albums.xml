@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_color"
-    tools:context=".view.main_activity.fragmentelement.songs.subfragment.AlbumsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvAlbum"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/albums" />
-
-</FrameLayout>
+        android:background="@color/background_color"
+        tools:listitem="@layout/layout_item_album"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:context=".view.main_activity.fragmentelement.songs.subfragment.album_fragment.AlbumsFragment" />
+</layout>

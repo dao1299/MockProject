@@ -28,6 +28,11 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
 //        this.onClickItemListSong = onClickItemListSong;
 //    }
 
+    public void setData(List<SongModel> songModelList){
+        this.songModelList = songModelList;
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override

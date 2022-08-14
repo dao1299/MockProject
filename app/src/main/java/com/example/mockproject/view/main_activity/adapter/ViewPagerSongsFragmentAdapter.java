@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.AlbumsFragment;
+import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.album_fragment.AlbumsFragment;
 import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.AllSongFragment;
 import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.artist_fragment.ArtistsFragment;
 import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.GenresFragment;
