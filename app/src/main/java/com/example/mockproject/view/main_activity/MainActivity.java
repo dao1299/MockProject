@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         setupAppbar();
         eventDetailPlayingSong();
         initSeekbar();
+        updateSeekbar();
 
 
     }
@@ -144,7 +146,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateSeekbar(){
+        activityMainBinding.containerMain.seekbarBottomControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser){
+                    if (mainViewModel.getSongModelLiveData()!=null)
+                        mainViewModel.updateSeekbar(progress);
+                }
+            }
 
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
 

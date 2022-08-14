@@ -12,6 +12,7 @@ public class MyApplication extends Application {
     public static final String PLAY_PAUSE_SONG = "PLAY_PAUSE_SONG";
     public static final String FINISH_SERVICE = "FINISH_SERVICE";
     public static final String UPDATE_CURRENT_DURATION = "UPDATE_CURRENT_DURATION";
+    public static final String UPDATE_SEEKBAR = "UPDATE_SEEKBAR";
 
     @Override
     public void onCreate() {

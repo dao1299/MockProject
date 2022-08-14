@@ -127,12 +127,12 @@ public class MainViewModel extends AndroidViewModel {
             }
         },1000);
     }
-
     public LiveData<Long> getCurrentDurationLiveData() {
         return currentDurationLiveData;
     }
-
-    public void updateSeekbar(){
-
+    public void updateSeekbar(int progress){
+        serviceIntent.setAction(MyApplication.UPDATE_SEEKBAR);
+        serviceIntent.putExtra("PROGRESS",progress);
+        getApplication().startService(serviceIntent);
     }
 }

@@ -65,9 +65,16 @@ public class PlayMediaService extends Service {
         }
         currentIndex = songsRepo.getCurrentSongIndex();
         songCurrent = songModelList.get(currentIndex);
-        Log.i(TAG, "onStartCommand: currnet: " + songCurrent);
-        if (intent != null && intent.getAction() != null)
-            handleAction(intent.getAction());
+//        Log.i(TAG, "onStartCommand: currnet: " + songCurrent);
+        if (intent != null && intent.getAction() != null){
+            Log.i(TAG, "check intent: ");
+            if (intent.hasExtra("PROGRESS") && intent.getAction().equals(MyApplication.UPDATE_SEEKBAR)){
+                Log.i(TAG, "update seekbar: ");
+                updateSeekbar(intent.getIntExtra("PROGRESS",0));
+            }else{
+                handleAction(intent.getAction());
+            }
+        }
         else
             playPauseSong();
         return START_STICKY;
@@ -122,6 +129,10 @@ public class PlayMediaService extends Service {
                 updateCurrent();
                 break;
         }
+    }
+
+    private void updateSeekbar(int progress) {
+        mediaPlayer.seekTo(progress);
     }
 
     private void playPauseSong() {
@@ -190,9 +201,9 @@ public class PlayMediaService extends Service {
     }
 
     private void updateCurrent() {
-        Log.i(TAG, "updateCurrent: "+mediaPlayer.getCurrentPosition());
+//        Log.i(TAG, "updateCurrent: "+mediaPlayer.getCurrentPosition());
         songsRepo.getCurrentDuration().postValue(Long.valueOf(mediaPlayer.getCurrentPosition()));
-        Log.i(TAG, "=========================");
+//        Log.i(TAG, "=========================");
     }
 
 }

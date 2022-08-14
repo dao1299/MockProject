@@ -44,19 +44,6 @@ public class FragmentNowPlaying extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         playSongsBinding.setViewModel(mViewModel);
-
-//        playSongsBinding.setLifecycleOwner(getViewLifecycleOwner());
-
-//        mViewModel.getSongModelLiveData().observe(getViewLifecycleOwner(), songModel -> {
-//            playSongsBinding.breakLine.setMax((int) songModel.getDurationSong());
-//        });
-//
-//
-//
-//        mViewModel.getCurrentDurationLiveData().observe(getViewLifecycleOwner(), value->{
-//            if (value!=null) playSongsBinding.breakLine.setProgress(Math.toIntExact(value));
-//        });
-
     }
 
     @Override
