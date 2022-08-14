@@ -22,6 +22,7 @@ public class SongsRepo {
     private MutableLiveData<SongModel> songModelMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> currentDuration = new MutableLiveData<>();
     private MutableLiveData<Boolean> playPauseMutable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> statusOfMediaMutableLive = new MutableLiveData<>();
 
 //    private int currentDuration;
 
@@ -131,5 +132,13 @@ public class SongsRepo {
 
     public void setPlayPauseMutable(MutableLiveData<Boolean> playPauseMutable) {
         this.playPauseMutable = playPauseMutable;
+    }
+
+    public MutableLiveData<Boolean> getStatusOfMediaMutableLive() {
+        return statusOfMediaMutableLive;
+    }
+
+    public void setStatusOfMediaMutableLive(MutableLiveData<Boolean> statusOfMediaMutableLive) {
+        this.statusOfMediaMutableLive = statusOfMediaMutableLive;
     }
 }

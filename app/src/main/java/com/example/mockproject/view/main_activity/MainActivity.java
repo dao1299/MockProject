@@ -122,6 +122,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeScreenPlayingSong(){
+        MenuItem menuItem = bottomNavigationView.getMenu().findItem(R.id.fragmentNowPlaying2);
+        NavigationUI.onNavDestinationSelected(menuItem,navController);
+//        v.setVisibility(View.GONE);
+    }
+
+    public void updateSeekbar(){
 
     }
 

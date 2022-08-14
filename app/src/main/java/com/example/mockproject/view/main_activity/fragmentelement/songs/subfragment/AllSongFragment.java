@@ -1,5 +1,6 @@
 package com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.example.mockproject.R;
 import com.example.mockproject.databinding.FragmentAllSongBinding;
 import com.example.mockproject.repository.SongsRepo;
 import com.example.mockproject.service.PlayMediaService;
+import com.example.mockproject.view.main_activity.MainActivity;
 import com.example.mockproject.view.main_activity.adapter.ListSongAdapter;
 import com.example.mockproject.model.SongModel;
 import com.example.mockproject.viewmodel.MainViewModel;
@@ -36,7 +38,7 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
     private static final String TAG = "AllSongFragment";
     FragmentAllSongBinding fragmentAllSongBinding;
     SongViewModel songViewModel;
-    SongsRepo songsRepo = SongsRepo.getInstance();
+    SongsRepo songsRepo;
     List<SongModel> songModelList;
 
     MainViewModel mainViewModel;
@@ -57,6 +59,7 @@ public class AllSongFragment extends Fragment implements ListSongAdapter.OnClick
         super.onViewCreated(view, savedInstanceState);
 //        songViewModel = new ViewModelProvider(this).get(SongViewModel.class);
 //        songModelList = songViewModel.getListSongs(requireActivity());
+        songsRepo = SongsRepo.getInstance();
 
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         songModelList = mainViewModel.getListSongs(requireActivity());

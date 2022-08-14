@@ -27,10 +27,8 @@ public class FragmentNowPlaying extends Fragment {
     private final String TAG = "FragmentNowPlaying";
 
     PlaySongsBinding playSongsBinding;
+    MainViewModel mViewModel;
 
-
-
-    Intent intent;
 
     public static FragmentNowPlaying newInstance() {
         return new FragmentNowPlaying();
@@ -40,28 +38,44 @@ public class FragmentNowPlaying extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         playSongsBinding = PlaySongsBinding.inflate(getLayoutInflater());
+        playSongsBinding.setLifecycleOwner(this);
         return playSongsBinding.getRoot();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mViewModel  = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        MainViewModel mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         playSongsBinding.setViewModel(mViewModel);
-        playSongsBinding.setLifecycleOwner(this);
+
+//        playSongsBinding.setLifecycleOwner(getViewLifecycleOwner());
 
         mViewModel.getSongModelLiveData().observe(getViewLifecycleOwner(), songModel -> {
             playSongsBinding.breakLine.setMax((int) songModel.getDurationSong());
-            Log.i(TAG, "onViewCreated: "+playSongsBinding.breakLine.getMax());
         });
 
+
+
         mViewModel.getCurrentDurationLiveData().observe(getViewLifecycleOwner(), value->{
-//
-            Log.i(TAG, "onViewCreated: "+value);
             if (value!=null) playSongsBinding.breakLine.setProgress(Math.toIntExact(value));
         });
 
     }
 
+    @Override
+    public void onStop() {
+        Log.i(TAG, "onStop: ");
+        super.onStop();
+    }
 
+    @Override
+    public void onDestroy() {
+        Log.i(TAG, "onDestroy: ");
+        super.onDestroy();
+    }
 }

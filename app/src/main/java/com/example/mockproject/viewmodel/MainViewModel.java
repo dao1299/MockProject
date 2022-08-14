@@ -122,7 +122,6 @@ public class MainViewModel extends AndroidViewModel {
             public void run() {
                 serviceIntent.setAction(MyApplication.UPDATE_CURRENT_DURATION);
                 currentDurationMutableLiveData.postValue(SongsRepo.getInstance().getCurrentDuration().getValue());
-                Log.i(TAG, "run: "+currentDurationMutableLiveData.getValue());
                 updateDuration();
                 getApplication().startService(serviceIntent);
             }
@@ -134,6 +133,6 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void updateSeekbar(){
-
+        
     }
 }

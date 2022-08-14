@@ -130,8 +130,6 @@ public class PlayMediaService extends Service {
             mediaPlayer.pause();
             initNotification(R.drawable.ic_play);
             isPlaying = false;
-
-
         } else {
             if (mediaPlayer == null)
                 mediaPlayer = MediaPlayer.create(this, Uri.parse(songCurrent.getUriSong()));
@@ -147,6 +145,7 @@ public class PlayMediaService extends Service {
         }
         songsRepo.getSongModelMutableLiveData().postValue(songCurrent);
         songsRepo.getPlayPauseMutable().postValue(isPlaying);
+        songsRepo.getStatusOfMediaMutableLive().postValue(true);
     }
 
     private void finishService() {
@@ -154,6 +153,7 @@ public class PlayMediaService extends Service {
         stopSelf();
         mediaPlayer.release();
         mediaPlayer = null;
+        songsRepo.getStatusOfMediaMutableLive().postValue(false);
     }
 
     private void nextSong() {
