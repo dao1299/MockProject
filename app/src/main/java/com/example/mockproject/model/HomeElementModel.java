@@ -34,13 +34,6 @@ public class HomeElementModel {
         this.haveViewAll = haveViewAll;
     }
 
-//    public RecyclerView getRecyclerView() {
-//        return recyclerView;
-//    }
-//
-//    public void setRecyclerView(RecyclerView recyclerView) {
-//        this.recyclerView = recyclerView;
-//    }
 
     @Override
     public String toString() {

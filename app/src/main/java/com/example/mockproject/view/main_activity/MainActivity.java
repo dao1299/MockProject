@@ -14,11 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,9 +24,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.mockproject.R;
 import com.example.mockproject.databinding.ActivityMainBinding;
-import com.example.mockproject.databinding.ContentMainBinding;
-import com.example.mockproject.model.SongModel;
-import com.example.mockproject.repository.SongsRepo;
 import com.example.mockproject.viewmodel.MainViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -41,28 +34,24 @@ public class MainActivity extends AppCompatActivity {
     NavHostFragment navHostFragment;
     NavController navController;
     ActivityMainBinding activityMainBinding;
-    private AppBarConfiguration mAppBarConfiguration;
     BottomNavigationView bottomNavigationView;
     MainViewModel mainViewModel;
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkPermission();
-//        activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         activityMainBinding.setViewModel(mainViewModel);
         activityMainBinding.setLifecycleOwner(this);
-
         setupBottomNavigation();
         setupAppbar();
         eventDetailPlayingSong();
         initSeekbar();
         updateSeekbar();
-
-
     }
 
     private boolean hasStoragePermission() {
@@ -81,12 +70,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void setupBottomNavigation() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setItemIconTintList(null);
-        NavigationUI.setupWithNavController(bottomNavigationView,navController);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 
     private void setupAppbar() {
@@ -97,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.homeFragment,R.id.songFragment,R.id.settingFragment)
+                R.id.homeFragment, R.id.songFragment, R.id.settingFragment)
                 .setOpenableLayout(drawerLayout)
                 .build();
 
@@ -116,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         Log.i(TAG, "onSupportNavigateUp: ");
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        if (navController.getCurrentDestination().getId()!=R.id.fragmentNowPlaying2){
+        if (navController.getCurrentDestination().getId() != R.id.fragmentNowPlaying2) {
             Log.i(TAG, "onSupportNavigateUp: 111111");
-        }else{
+        } else {
             activityMainBinding.containerMain.containerControlBottom.setVisibility(View.VISIBLE);
         }
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
@@ -137,37 +125,33 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void eventDetailPlayingSong(){
-        findViewById(R.id.containerControlBottom).setOnClickListener(v->{
+    public void eventDetailPlayingSong() {
+        findViewById(R.id.containerControlBottom).setOnClickListener(v -> {
 //            Navigation.findNavController(this,R.id.nav_host_fragment_content_main).navigate(R.id.action_global_fragmentNowPlaying2);
             MenuItem menuItem = bottomNavigationView.getMenu().findItem(R.id.fragmentNowPlaying2);
-            NavigationUI.onNavDestinationSelected(menuItem,navController);
+            NavigationUI.onNavDestinationSelected(menuItem, navController);
             v.setVisibility(View.GONE);
         });
     }
 
-    public void changeScreenPlayingSong(){
-        MenuItem menuItem = bottomNavigationView.getMenu().findItem(R.id.fragmentNowPlaying2);
-        NavigationUI.onNavDestinationSelected(menuItem,navController);
-//        v.setVisibility(View.GONE);
-    }
 
-    public void initSeekbar(){
+    public void initSeekbar() {
         mainViewModel.getSongModelLiveData().observe(activityMainBinding.getLifecycleOwner(), songModel -> {
             activityMainBinding.containerMain.seekbarBottomControl.setMax((int) songModel.getDurationSong());
         });
 
-        mainViewModel.getCurrentDurationLiveData().observe(activityMainBinding.getLifecycleOwner(), value->{
-            if (value!=null) activityMainBinding.containerMain.seekbarBottomControl.setProgress(Math.toIntExact(value));
+        mainViewModel.getCurrentDurationLiveData().observe(activityMainBinding.getLifecycleOwner(), value -> {
+            if (value != null)
+                activityMainBinding.containerMain.seekbarBottomControl.setProgress(Math.toIntExact(value));
         });
     }
 
-    public void updateSeekbar(){
+    public void updateSeekbar() {
         activityMainBinding.containerMain.seekbarBottomControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser){
-                    if (mainViewModel.getSongModelLiveData()!=null)
+                if (fromUser) {
+                    if (mainViewModel.getSongModelLiveData() != null)
                         mainViewModel.updateSeekbar(progress);
                 }
             }
@@ -184,9 +168,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        Log.i(TAG, "onBackPressed: ");
-        super.onBackPressed();
-    }
 }

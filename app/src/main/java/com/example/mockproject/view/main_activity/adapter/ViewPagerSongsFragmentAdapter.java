@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.album_fragment.AlbumsFragment;
 import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.AllSongFragment;
-import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.artist_fragment.ArtistsFragment;
 import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.GenresFragment;
 import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.PlayListFragment;
+import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.album_fragment.AlbumsFragment;
+import com.example.mockproject.view.main_activity.fragmentelement.songs.subfragment.artist_fragment.ArtistsFragment;
 
 public class ViewPagerSongsFragmentAdapter extends FragmentStateAdapter {
 
@@ -19,7 +19,7 @@ public class ViewPagerSongsFragmentAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return AllSongFragment.newInstance();
             case 1:

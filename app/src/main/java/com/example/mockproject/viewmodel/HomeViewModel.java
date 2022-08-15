@@ -34,53 +34,7 @@ public class HomeViewModel extends AndroidViewModel {
         this.application = application;
     }
 
-    public List<SongModel> getListSongs(Activity context){
-        return new SongsUtils().getListSongs(context);
-    }
 
-
-    public List<HomeElementModel> initHomeElement(){
-        homeElementModels = new ArrayList<>();
-        homeElementModels.add(new HomeElementModel(application.getString(R.string.HotRCM),
-                false,
-                initHotAdapter()));
-
-        homeElementModels.add(new HomeElementModel(application.getString(R.string.Playlists),
-                true,
-                initPlaylistAdapter()));
-
-        homeElementModels.add(new HomeElementModel(application.getString(R.string.RecentlyPlayed),true,initListSongAdapter()));
-        return homeElementModels;
-    }
-
-
-    public HotRecommendAdapter initHotAdapter(){
-        listSongHotRcm = new ArrayList<>();
-        listSongHotRcm.add(new SongModel(1,"Sound of Sky","Dilon Bruce","Dilon Bruce"));
-        listSongHotRcm.add(new SongModel(2,"Girl on Fire","Dilon Bruce","Alecia Keys"));
-        listSongHotRcm.add(new SongModel(3,"Sound of Sky","Dilon Bruce","Dilon Bruce"));
-        listSongHotRcm.add(new SongModel(4,"Girl on Fire","Dilon Bruce","Alecia Keys"));
-
-        return new HotRecommendAdapter(listSongHotRcm);
-    }
-
-    public PlayListAdapter initPlaylistAdapter(){
-        listPlaylist = new ArrayList<>();
-        listPlaylist.add(new PlaylistModel("Classic Playlist","1","Piano Guys"));
-        listPlaylist.add(new PlaylistModel("Summer Playlist","2","Dilon Bruce"));
-        listPlaylist.add(new PlaylistModel("Classic Playlist","1","Piano Guys"));
-        listPlaylist.add(new PlaylistModel("Summer Playlist","2","Dilon Bruce"));
-        return new PlayListAdapter(listPlaylist);
-    }
-
-    public ListSongAdapter initListSongAdapter(){
-        listRecentlyPlayer = new ArrayList<>();
-        listRecentlyPlayer.add(new SongModel(1,"Sound of Sky","Dilon Bruce","Dilon Bruce"));
-        listRecentlyPlayer.add(new SongModel(2,"Girl on Fire","Dilon Bruce","Alecia Keys"));
-        listRecentlyPlayer.add(new SongModel(3,"Sound of Sky","Dilon Bruce","Dilon Bruce"));
-        listRecentlyPlayer.add(new SongModel(4,"Girl on Fire","Dilon Bruce","Alecia Keys"));
-        return new ListSongAdapter( null,listRecentlyPlayer);
-    }
 
     public List<ArtistModel> initListArtists(){
         List<ArtistModel> artistModels = new ArrayList<>();

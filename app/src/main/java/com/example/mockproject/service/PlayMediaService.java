@@ -48,8 +48,6 @@ public class PlayMediaService extends Service {
         super.onCreate();
         songModelList = songsRepo.getSongModelList();
         currentIndex = songsRepo.getCurrentSongIndex();
-        Log.i(TAG, "onCreate: ");
-
     }
 
     @Override
@@ -65,11 +63,8 @@ public class PlayMediaService extends Service {
         }
         currentIndex = songsRepo.getCurrentSongIndex();
         songCurrent = songModelList.get(currentIndex);
-//        Log.i(TAG, "onStartCommand: currnet: " + songCurrent);
         if (intent != null && intent.getAction() != null){
-            Log.i(TAG, "check intent: ");
             if (intent.hasExtra("PROGRESS") && intent.getAction().equals(MyApplication.UPDATE_SEEKBAR)){
-                Log.i(TAG, "update seekbar: ");
                 updateSeekbar(intent.getIntExtra("PROGRESS",0));
             }else{
                 handleAction(intent.getAction());
@@ -160,7 +155,6 @@ public class PlayMediaService extends Service {
     }
 
     private void finishService() {
-        Log.i(TAG, "finishService: ");
         stopSelf();
         mediaPlayer.release();
         mediaPlayer = null;
@@ -169,8 +163,6 @@ public class PlayMediaService extends Service {
     }
 
     private void nextSong() {
-        Log.i(TAG, "nextSong: ");
-//        previousIndex = currentIndex;
         if (isShuffle) {
             Random random = new Random();
             currentIndex = random.nextInt(songModelList.size());
@@ -202,10 +194,8 @@ public class PlayMediaService extends Service {
     }
 
     private void updateCurrent() {
-//        Log.i(TAG, "updateCurrent: "+mediaPlayer.getCurrentPosition());
         if (mediaPlayer!=null)
         songsRepo.getCurrentDuration().postValue((long) mediaPlayer.getCurrentPosition());
-//        Log.i(TAG, "=========================");
     }
 
 }

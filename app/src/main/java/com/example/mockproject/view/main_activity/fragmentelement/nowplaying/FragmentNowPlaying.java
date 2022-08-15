@@ -46,17 +46,6 @@ public class FragmentNowPlaying extends Fragment {
         playSongsBinding.setViewModel(mViewModel);
     }
 
-    @Override
-    public void onStop() {
-        Log.i(TAG, "onStop: ");
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.i(TAG, "onDestroy: ");
-        super.onDestroy();
-    }
 
     @Override
     public void onStart() {

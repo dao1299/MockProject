@@ -23,29 +23,6 @@ import java.util.List;
 public class SongsUtils extends Activity{
     private static final String TAG = "SongsUtils";
 
-//    private boolean hasStoragePermission(Context context) {
-//        int permission = ContextCompat.checkSelfPermission(
-//                context,
-//                Manifest.permission.READ_EXTERNAL_STORAGE);
-//        return permission == PackageManager.PERMISSION_GRANTED;
-//    }
-//
-//    private List<SongModel> checkPermission(Activity context) {
-//        boolean hasPermission = hasStoragePermission(context);
-//        if (hasPermission) {
-//            return getListSongs(context);
-//        } else {
-//            ActivityCompat.requestPermissions(context,
-//                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-//                    1);
-//        }
-//        return new ArrayList<>();
-//    }
-//
-//    public List<SongModel> getSongs(Activity context) {
-//        return checkPermission(context);
-//    }
-
     public List<SongModel> getListSongs(Activity activity){
         List<SongModel> songModelList = new ArrayList<>();
         String selection = "is_music=1";

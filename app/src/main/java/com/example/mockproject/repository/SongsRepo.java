@@ -24,9 +24,6 @@ public class SongsRepo {
     private MutableLiveData<Boolean> playPauseMutable = new MutableLiveData<>();
     private MutableLiveData<Boolean> statusOfMediaMutableLive = new MutableLiveData<>();
 
-//    private int currentDuration;
-
-
     private static volatile SongsRepo instance = null;
 
     private SongsRepo(){

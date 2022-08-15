@@ -27,7 +27,6 @@ import com.example.mockproject.viewmodel.MainViewModel;
 public class HomeFragment extends Fragment implements ListSongAdapter.OnClickItemListSong {
 
     private static final String TAG = "HomeFragment";
-//    private HomeViewModel mViewModel;
     private MainViewModel mViewModel;
     private FragmentHomeBinding fragmentHomeBinding;
     private HomeElementAdapter homeElementAdapter;
@@ -48,12 +47,10 @@ public class HomeFragment extends Fragment implements ListSongAdapter.OnClickIte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-
         homeElementAdapter = new HomeElementAdapter(mViewModel.initHomeElement(),requireActivity());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL,false);
         fragmentHomeBinding.rcvHome.setLayoutManager(linearLayoutManager);
         fragmentHomeBinding.rcvHome.setAdapter(homeElementAdapter);
-
     }
 
     @Override
@@ -65,33 +62,9 @@ public class HomeFragment extends Fragment implements ListSongAdapter.OnClickIte
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i(TAG, "onCreate: ");
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void onStart() {
         Log.i(TAG, "onStart: ");
         mViewModel.setVisibilityForBottomControl(true);
         super.onStart();
-    }
-
-    @Override
-    public void onPause() {
-        Log.i(TAG, "onPause: ");
-        super.onPause();
-    }
-
-    @Override
-    public void onStop() {
-        Log.i(TAG, "onStop: ");
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.i(TAG, "onDestroy: ");
-        super.onDestroy();
     }
 }

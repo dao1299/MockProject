@@ -21,11 +21,6 @@ public class SplashActivity extends AppCompatActivity {
         ImageView imgLogo = findViewById(R.id.iv_logo_splash);
         TextView txtLogo = findViewById(R.id.tv_logo_splash);
 
-//        Animation animationFade = new AlphaAnimation(-1f,1f);
-//        animationFade.setDuration(2500);
-//        ScaleAnimation scaleAnimation = new ScaleAnimation(0f, 1f, 0f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-//        scaleAnimation.setDuration(3000);
-
         TranslateAnimation animationLeftToCenter = new TranslateAnimation(-100f, 0, 0, 0);
         animationLeftToCenter.setDuration(1500);
         TranslateAnimation animationRightToCenter = new TranslateAnimation(100f, 0, 0, 0);
@@ -33,7 +28,6 @@ public class SplashActivity extends AppCompatActivity {
 
         imgLogo.setAnimation(animationLeftToCenter);
         txtLogo.setAnimation(animationRightToCenter);
-
 
         Runnable runnable = () -> {
             startActivity(new Intent(SplashActivity.this, MainActivity.class));

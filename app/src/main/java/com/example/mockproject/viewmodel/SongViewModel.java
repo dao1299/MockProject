@@ -11,7 +11,5 @@ import com.example.mockproject.utils.SongsUtils;
 import java.util.List;
 
 public class SongViewModel extends ViewModel {
-    public List<SongModel> getListSongs(Activity context){
-        return new SongsUtils().getListSongs(context);
-    }
+
 }

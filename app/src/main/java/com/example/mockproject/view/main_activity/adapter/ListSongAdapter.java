@@ -23,11 +23,6 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
         this.songModelList = songModelList;
     }
 
-    //    public ListSongAdapter(@NonNull DiffUtil.ItemCallback<SongModel> diffCallback, OnClickItemListSong onClickItemListSong) {
-//        super(diffCallback);
-//        this.onClickItemListSong = onClickItemListSong;
-//    }
-
     public void setData(List<SongModel> songModelList){
         this.songModelList = songModelList;
         notifyDataSetChanged();
