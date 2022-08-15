@@ -36,8 +36,8 @@ public class SongsUtils extends Activity{
                         MediaStore.Audio.Media.ALBUM_ID,
                         MediaStore.Audio.Media.DURATION,
                         MediaStore.Audio.Media.DATA,
-                        MediaStore.Audio.Media.GENRE,
-                        MediaStore.Audio.Media.GENRE_ID,
+                        MediaStore.Audio.Media.DATA,
+                        MediaStore.Audio.Media.DATA,
                 },selection,null,null);
         Log.i(TAG, "getMusic: "+cursor.getCount()+" "+Thread.currentThread().getName());
         while(cursor.moveToNext()){
